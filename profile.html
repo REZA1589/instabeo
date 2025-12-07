@@ -1,1 +1,141 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <!-- سئو کامل -->
+  <title>@username | هنستابیو</title>
+  <meta name="description" content="پروفایل کهکشانی من | همه لینک‌هام اینجاست!" />
+  <meta name="keywords" content="لینک بیو, اینستاگرام, تم کهکشانی, نئون, هنستابیو" />
+  
+  <!-- Open Graph -->
+  <meta property="og:title" content="@username | هنستابیو" />
+  <meta property="og:description" content="پروفایل کهکشانی من با هنستابیو" />
+  <meta property="og:image" content="https://instabeo.ir/assets/img/og-default.jpg" />
+  <meta property="og:url" content="https://instabeo.ir" />
+  <meta property="og:type" content="profile" />
 
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;700&family=Orbitron:wght@700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="icon" href="../assets/img/favicon.ico" />
+</head>
+<body>
+
+  <body class="profile-page">    <!-- پروفایل -->
+
+  <div id="particles-js"></div>
+  <div id="galaxy-bg"></div>
+
+  <div class="profile-container">
+    <div class="profile-card">
+      <div class="avatar-glow">
+        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&crop=face" alt="آواتار" class="avatar" />
+        <div class="avatar-ring"></div>
+      </div>
+
+      <h1 class="username">@username</h1>
+      <p class="bio">در حال بارگذاری...</p>
+
+      <div class="links">
+        <!-- لینک‌ها اینجا ساخته میشن -->
+      </div>
+
+      <div class="stats">
+        <span><i class="fas fa-eye"></i> ۰ بازدید</span>
+      </div>
+
+      <div class="powered-by">
+        ساخته شده با <span class="heart">❤️</span> توسط 
+        <a href="https://instabeo.ir" target="_blank">هنستابیو</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- اسکریپت‌ها -->
+  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+  <script src="../assets/js/main.js"></script>
+
+ <script>
+// لیست تم‌های متحرک
+const dreamThemes = {
+  "cosmic-flow": "https://assets.mixkit.co/videos/preview/mixkit-stars-moving-in-deep-space-30704-small.mp4",
+  "purple-nebula": "https://assets.mixkit.co/videos/preview/mixkit-nebula-background-with-rotating-motion-30703-small.mp4",
+  "electric-galaxy": "https://assets.mixkit.co/videos/preview/mixkit-abstract-video-of-galaxy-with-electric-energy-30706-small.mp4",
+  "aurora-dance": "https://assets.mixkit.co/videos/preview/mixkit-aurora-borealis-in-a-night-sky-30705-small.mp4",
+  "space-tunnel": "https://assets.mixkit.co/videos/preview/mixkit-flying-through-a-tunnel-of-stars-30708-small.mp4",
+  "pink-galaxy": "https://assets.mixkit.co/videos/preview/mixkit-galaxy-background-in-pink-tone-30709-small.mp4",
+  "golden-cosmos": "https://assets.mixkit.co/videos/preview/mixkit-golden-galaxy-with-moving-stars-30707-small.mp4",
+  "ice-void": "https://assets.mixkit.co/videos/preview/mixkit-icy-blue-galaxy-animation-30710-small.mp4",
+  "blood-moon": "https://assets.mixkit.co/videos/preview/mixkit-red-nebula-with-moving-stars-30711-small.mp4",
+  "starfall": "https://assets.mixkit.co/videos/preview/mixkit-stars-falling-in-the-night-sky-30712-small.mp4",
+  "hologram": "https://assets.mixkit.co/videos/preview/mixkit-holographic-waves-in-motion-30713-small.mp4",
+  "deep-void": "https://assets.mixkit.co/videos/preview/mixkit-deep-space-animation-with-moving-stars-30714-small.mp4"
+};
+
+function applyAll(data) {
+  if (!data) return;
+
+  // ←←← این ۵ خط حیاتی رو اضافه کن (اینجاست که همه چیز درست میشه!)
+  if (!data.themeVideo && data.theme && dreamThemes[data.theme]) {
+    data.themeVideo = dreamThemes[data.theme];
+  }
+
+  // پاک کردن قبلی
+  document.body.style.background = '';
+  document.querySelectorAll('#dynamic-bg-video, #video-overlay').forEach(el => el?.remove());
+
+  // تم متحرک
+  if (data.themeVideo && data.themeVideo.includes('.mp4')) {
+    const video = document.createElement('video');
+    video.id = 'dynamic-bg-video';
+    video.autoplay = video.loop = video.muted = video.playsInline = true;
+    video.style.cssText = 'position:fixed;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2;';
+    video.innerHTML = `<source src="${data.themeVideo}" type="video/mp4">`;
+    document.body.prepend(video);
+
+    const overlay = document.createElement('div');
+    overlay.id = 'video-overlay';
+    overlay.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,0.45);z-index:-1;';
+    document.body.prepend(overlay);
+  }
+  // تم شخصی
+  else if (data.customBg) {
+    document.body.style.background = `url('${data.customBg}') center/cover fixed`;
+  }
+
+  // اطلاعات کاربر
+  if (data.avatar) document.querySelector('.avatar').src = data.avatar;
+  if (data.username) document.querySelector('.username').textContent = data.username;
+  if (data.bio) document.querySelector('.bio').textContent = data.bio || '';
+
+  const linksDiv = document.querySelector('.links');
+  linksDiv.innerHTML = '';
+  (data.links || []).forEach(l => {
+    const a = document.createElement('a');
+    a.href = l.url; a.target = '_blank'; a.rel = 'noopener';
+    a.className = 'link-btn neon-gradient';
+    a.innerHTML = `<i class="${l.icon||'fas fa-link'}"></i><span>${l.title}</span><i class="fas fa-external-link-alt arrow"></i>`;
+    linksDiv.appendChild(a);
+  });
+}
+
+// دریافت از داشبورد
+window.addEventListener('message', e => {
+  if (e.data.type === 'fullUpdate' && e.data.payload) {
+    applyAll(e.data.payload);
+  }
+});
+
+// وقتی مستقیم باز شد
+const saved = JSON.parse(localStorage.getItem('instabeo_user') || '{}');
+if (Object.keys(saved).length > 2) {
+  applyAll(saved);
+}
+</script>
+</body>
+</html>
