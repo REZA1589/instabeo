@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ثبت‌نام | اینستابیو - پروفایل کهکشانی بساز</title>
+  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;700&family=Orbitron:wght@700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="icon" href="assets/img/favicon.ico">
+</head>
+<body>
+  <div id="particles-js"></div>
+  <div id="galaxy-bg"></div>
+
+  <header>
+    <div class="container">
+      <div class="logo">اینستابیو</div>
+      <nav>
+        <a href="index.html">خانه</a>
+        <a href="login.html" class="btn btn-ghost">ورود</a>
+      </nav>
+      <button class="menu-btn"><i class="fas fa-bars"></i></button>
+    </div>
+  </header>
+
+  <div class="hero" style="min-height:100vh;padding:0">
+    <div class="container" style="max-width:480px">
+      <div class="card" style="padding:3rem 2.5rem;margin-top:8rem">
+        <h1 class="username" style="font-size:2.8rem;margin-bottom:1rem">ثبت‌نام رایگان</h1>
+        <p style="opacity:0.8;margin-bottom:2rem">همین الان پروفایل کهکشانی‌ت رو بساز!</p>
+
+        <form id="registerForm">
+          <div class="form-group">
+            <input type="text" id="fullName" required>
+            <label>نام و نام خانوادگی</label>
+          </div>
+
+          <div class="form-group">
+            <input type="email" id="email" required>
+            <label>ایمیل</label>
+            <small class="error-msg"></small>
+          </div>
+
+          <div class="form-group">
+            <input type="password" id="password" required minlength="6">
+            <label>رمز عبور (حداقل ۶ کاراکتر)</label>
+            <small class="error-msg"></small>
+          </div>
+
+          <div class="form-group">
+            <input type="password" id="confirmPassword" required>
+            <label>تکرار رمز عبور</label>
+            <small class="error-msg"></small>
+          </div>
+
+          <button type="submit" class="btn btn-primary" style="width:100%;margin-top:1.5rem;padding:1rem">
+            ثبت‌نام و ساخت پروفایل
+          </button>
+        </form>
+
+        <p style="text-align:center;margin-top:2rem;opacity:0.8">
+          قبلاً ثبت‌نام کردی؟ <a href="login.html" style="color:var(--n2)">وارد شو</a>
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+  <script src="assets/js/main.js"></script>
+  <script>
+    document.getElementById('registerForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      const name = document.getElementById('fullName').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const pass = document.getElementById('password').value;
+      const confirm = document.getElementById('confirmPassword').value;
+
+      // پاک کردن پیام‌های قبلی
+      document.querySelectorAll('.error-msg').forEach(el => el.textContent = '');
+
+      let valid = true;
+
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        document.querySelector('#email + .error-msg').textContent = 'ایمیل معتبر نیست';
+        valid = false;
+      }
+      if (pass.length < 6) {
+        document.querySelector('#password + .error-msg').textContent = 'رمز حداقل ۶ کاراکتر';
+        valid = false;
+      }
+      if (pass !== confirm) {
+        document.querySelector('#confirmPassword + .error-msg').textContent = 'رمزها یکسان نیستند';
+        valid = false;
+      }
+
+      if (valid) {
+        // ذخیره کاربر
+        const user = { name, email, password: pass };
+        localStorage.setItem('hnstabeo_current_user', JSON.stringify(user));
+        localStorage.setItem('hnstabeo_user', JSON.stringify({
+          username: '@' + name.split(' ')[0].toLowerCase(),
+          bio: 'سلام! من تازه وارد اینستابیو شدم ✨',
+          avatar: '',
+          theme: 'galaxy',
+          links: []
+        }));
+
+        // انیمیشن موفقیت
+        const btn = e.target.querySelector('button');
+        btn.innerHTML = '<i class="fas fa-check"></i> عالی! در حال انتقال...';
+        btn.disabled = true;
+
+        setTimeout(() => location.href = 'dashboard.html', 1500);
+      }
+    });
+  </script>
+
+  <style>
+    .error-msg{color:#ff6b6b;font-size:0.85rem;margin-top:0.4rem;display:block;min-height:1.2rem}
+  </style>
+</body>
+</html>
