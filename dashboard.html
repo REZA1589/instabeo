@@ -1,1 +1,475 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>داشبورد | اینستابیو - بساز پروفایل کهکشانی‌ت</title>
+  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;700&family=Orbitron:wght@700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <link rel="stylesheet" href="assets/css/style.css"/>
+  <link rel="icon" href="assets/img/favicon.ico"/>
+</head>
+<body>
 
+  <body class="dashboard-page">  <!-- داشبورد -->
+
+  <!-- Particles + Galaxy Background -->
+  <div id="particles-js"></div>
+  <div id="galaxy-bg"></div>
+
+  <!-- Header -->
+  <header>
+
+ 
+    <div class="container">
+      <div class="logo">اینستابیو.IR</div>
+      <nav>
+        <a href="index.html">خانه</a>
+        <a href="#" id="previewLink" target="_blank">پیش‌نمایش</a>
+      </nav>
+      <button class="menu-btn"><i class="fas fa-bars"></i></button>
+    </div>
+  </header>
+
+  <div class="dashboard-grid">
+    <!-- فرم ویرایش -->
+    <div class="editor-panel card">
+      <h2>ویرایش پروفایل</h2>
+
+      <!-- آواتار -->
+      <!-- آواتار با ۳ روش -->
+<div class="form-group avatar-upload">
+  <label>آواتار (۳ راه انتخاب کن)</label>
+  
+  <!-- راه اول: آپلود از دستگاه -->
+  <div class="avatar-preview" onclick="document.getElementById('avatarInput').click()">
+    <img id="avatarImg" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&crop=face" alt="آواتار"/>
+    <div class="upload-overlay"><i class="fas fa-camera"></i><br>آپلود از دستگاه</div>
+  </div>
+
+  <input type="file" id="avatarInput" accept="image/*" style="display:none"/>
+  
+  <!-- روش ۲: لینک عکس (حالا ۱۰۰٪ کار می‌کنه) -->
+  <div style="margin-top:1rem">
+    <input 
+      type="url" 
+      id="avatarLink" 
+      placeholder="لینک مستقیم عکس رو اینجا بذار..." 
+      style="width:100%;padding:0.9rem;border-radius:12px;background:rgba(255,255,255,.07);border:1px solid rgba(0,255,255,.4);color:#fff;font-size:0.95rem"
+    >
+    <button 
+      class="btn btn-primary" 
+      style="width:100%;margin-top:.6rem;padding:0.9rem;font-weight:600" 
+      onclick="applyAvatarFromLink()"
+    >
+      اعمال آواتار از لینک
+    </button>
+  </div>
+
+  <!-- روش ۳: گالری آماده -->
+  <details style="margin-top:1rem">
+    <summary style="cursor:pointer;color:var(--n2);font-weight:600">یا از گالری کهکشانی انتخاب کن</summary>
+    <div class="avatar-gallery">
+      <img src="https://images.unsplash.com/photo-1531891437562-4301cf35b7e5?w=400&h=400&fit=crop&crop=face" onclick="setAvatar(this.src)">
+      <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&h=400&fit=crop&crop=face" onclick="setAvatar(this.src)">
+      <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&crop=face" onclick="setAvatar(this.src)">
+      <img src="https://images.unsplash.com/photo-1534528748-9e9ec7a3c8dc?w=400&h=400&fit=crop&crop=face" onclick="setAvatar(this.src)">
+      <img src="https://images.unsplash.com/photo-1537815749002-de6a533c64db?w=400&h=400&fit=crop&crop=face" onclick="setAvatar(this.src)">
+      <img src="https://images.unsplash.com/photo-1552374196-c4e7ffc6e126?w=400&h=400&fit=crop&crop=face" onclick="setAvatar(this.src)">
+      <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=400&h=400&fit=crop&crop=face" onclick="setAvatar(this.src)">
+      <img src="https://images.unsplash.com/photo-1555952517-af357a8b4c71?w=400&h=400&fit=crop&crop=face" onclick="setAvatar(this.src)">
+    </div>
+  </details>
+</div>
+
+      <!-- نام کاربری -->
+      <div class="form-group">
+        <input type="text" id="username" value="@ali" required/>
+        <label>نام کاربری</label>
+      </div>
+
+      <!-- بیو -->
+      <div class="form-group">
+        <textarea id="bio" rows="3" required>گیمر فضایی • استریمر توییچ • عاشق تکنولوژی و NFT</textarea>
+        <label>بیو</label>
+      </div>
+
+      <!-- تم‌ها -->
+      <!-- ==== گالری تم‌های جدید (جایگزین بخش قدیمی تم) ==== -->
+<div class="form-group">
+  <label>تم‌های متحرک کهکشانی ۲۰۲۵ (فوق حرفه‌ای)</label>
+  <div class="themes-grid-mobile">
+    
+    <!-- تم ۱ - Cosmic Flow -->
+    <div class="theme-card active" data-theme="cosmic-flow">
+      <div class="theme-thumb video-thumb">
+        <video autoplay loop muted playsinline preload="metadata">
+          <source src="https://assets.mixkit.co/videos/preview/mixkit-stars-moving-in-deep-space-30704-small.mp4" type="video/mp4">
+        </video>
+        <div class="theme-overlay">Cosmic Flow</div>
+      </div>
+    </div>
+
+    <!-- تم ۲ - Purple Nebula -->
+    <div class="theme-card" data-theme="purple-nebula">
+      <div class="theme-thumb video-thumb">
+        <video autoplay loop muted playsinline preload="metadata">
+          <source src="https://assets.mixkit.co/videos/preview/mixkit-nebula-background-with-rotating-motion-30703-small.mp4" type="video/mp4">
+        </video>
+        <div class="theme-overlay">Purple Nebula</div>
+      </div>
+    </div>
+
+    <!-- تم ۳ - Electric Galaxy -->
+    <div class="theme-card" data-theme="electric-galaxy">
+      <div class="theme-thumb video-thumb">
+        <video autoplay loop muted playsinline preload="metadata">
+          <source src="https://assets.mixkit.co/videos/preview/mixkit-abstract-video-of-galaxy-with-electric-energy-30706-small.mp4" type="video/mp4">
+        </video>
+        <div class="theme-overlay">Electric Storm</div>
+      </div>
+    </div>
+
+    <!-- تم ۴ - Aurora Dance -->
+    <div class="theme-card" data-theme="aurora-dance">
+      <div class="theme-thumb video-thumb">
+        <video autoplay loop muted playsinline preload="metadata">
+          <source src="https://assets.mixkit.co/videos/preview/mixkit-aurora-borealis-in-a-night-sky-30705-small.mp4" type="video/mp4">
+        </video>
+        <div class="theme-overlay">Aurora Dance</div>
+      </div>
+    </div>
+
+    <!-- تم ۵ - Space Tunnel -->
+    <div class="theme-card" data-theme="space-tunnel">
+      <div class="theme-thumb video-thumb">
+        <video autoplay loop muted playsinline preload="metadata">
+          <source src="https://assets.mixkit.co/videos/preview/mixkit-flying-through-a-tunnel-of-stars-30708-small.mp4" type="video/mp4">
+        </video>
+        <div class="theme-overlay">Space Tunnel</div>
+      </div>
+    </div>
+
+    <!-- تم ۶ - Pink Galaxy -->
+    <div class="theme-card" data-theme="pink-galaxy">
+      <div class="theme-thumb video-thumb">
+        <video autoplay loop muted playsinline preload="metadata">
+          <source src="https://assets.mixkit.co/videos/preview/mixkit-galaxy-background-in-pink-tone-30709-small.mp4" type="video/mp4">
+        </video>
+        <div class="theme-overlay">Pink Dream</div>
+      </div>
+    </div>
+
+    <!-- تم ۷ - Golden Cosmos -->
+    <div class="theme-card" data-theme="golden-cosmos">
+      <div class="theme-thumb video-thumb">
+        <video autoplay loop muted playsinline preload="metadata">
+          <source src="https://assets.mixkit.co/videos/preview/mixkit-golden-galaxy-with-moving-stars-30707-small.mp4" type="video/mp4">
+        </video>
+        <div class="theme-overlay">Golden Hour</div>
+      </div>
+    </div>
+
+    <!-- تم ۸ - Ice Void -->
+    <div class="theme-card" data-theme="ice-void">
+      <div class="theme-thumb video-thumb">
+        <video autoplay loop muted playsinline preload="metadata">
+          <source src="https://assets.mixkit.co/videos/preview/mixkit-icy-blue-galaxy-animation-30710-small.mp4" type="video/mp4">
+        </video>
+        <div class="theme-overlay">Ice Galaxy</div>
+      </div>
+    </div>
+
+    <!-- تم ۹ - Blood Moon -->
+    <div class="theme-card" data-theme="blood-moon">
+      <div class="theme-thumb video-thumb">
+        <video autoplay loop muted playsinline preload="metadata">
+          <source src="https://assets.mixkit.co/videos/preview/mixkit-red-nebula-with-moving-stars-30711-small.mp4" type="video/mp4">
+        </video>
+        <div class="theme-overlay">Blood Moon</div>
+      </div>
+    </div>
+
+    <!-- تم ۱۰ - Starfall -->
+    <div class="theme-card" data-theme="starfall">
+      <div class="theme-thumb video-thumb">
+        <video autoplay loop muted playsinline preload="metadata">
+          <source src="https://assets.mixkit.co/videos/preview/mixkit-stars-falling-in-the-night-sky-30712-small.mp4" type="video/mp4">
+        </video>
+        <div class="theme-overlay">Starfall</div>
+      </div>
+    </div>
+
+    <!-- تم ۱۱ - Hologram Waves -->
+    <div class="theme-card" data-theme="hologram">
+      <div class="theme-thumb video-thumb">
+        <video autoplay loop muted playsinline preload="metadata">
+          <source src="https://assets.mixkit.co/videos/preview/mixkit-holographic-waves-in-motion-30713-small.mp4" type="video/mp4">
+        </video>
+        <div class="theme-overlay">Hologram</div>
+      </div>
+    </div>
+
+    <!-- تم ۱۲ - Deep Void -->
+    <div class="theme-card" data-theme="deep-void">
+      <div class="theme-thumb video-thumb">
+        <video autoplay loop muted playsinline preload="metadata">
+          <source src="https://assets.mixkit.co/videos/preview/mixkit-deep-space-animation-with-moving-stars-30714-small.mp4" type="video/mp4">
+        </video>
+        <div class="theme-overlay">Deep Void</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- تم شخصی‌سازی شده — جدید و خفن -->
+<div class="theme-card" data-theme="custom">
+  <div class="theme-preview" id="customPreview" 
+       style="background-image:url('https://images.unsplash.com/photo-1506318137071-a8e063b4bec0?w=800');background-size:cover;background-position:center">
+    <div style="position:absolute;inset:0;background:rgba(0,0,0,.5);border-radius:12px"></div>
+    <div style="position:relative;z-index:2;color:#fff;text-align:center;padding-top:25px;font-weight:600">
+      <i class="fas fa-image fa-2x mb-2"></i><br>
+      تم شخصی من
+    </div>
+  </div>
+  <small>عکس دلخواه</small>
+</div>
+
+<!-- آپلود عکس پس‌زمینه -->
+<input type="file" id="customBgInput" accept="image/*" style="display:none">
+<button class="btn btn-ghost" style="width:100%;margin-top:.8rem" onclick="document.getElementById('customBgInput').click()">
+  آپلود عکس دلخواه برای پس‌زمینه
+</button>
+
+
+
+      <hr style="margin:2rem 0; border-color:rgba(0,255,255,.2)"/>
+
+      <h3>لینک‌ها</h3>
+      <div id="linksContainer">
+        <!-- لینک‌ها اینجا اضافه می‌شن -->
+      </div>
+
+      <button class="btn btn-primary" style="width:100%;margin-top:1rem" onclick="addLink()">
+        <i class="fas fa-plus"></i> اضافه کردن لینک جدید
+      </button>
+    </div>
+
+    <!-- پیش‌نمایش زنده -->
+    <div class="preview-panel card">
+      <h3>پیش‌نمایش زنده</h3>
+      <div class="mobile-frame">
+       <iframe id="previewFrame" src="profile.html" onload="sendFullDataToPreview()"></iframe>      <p style="text-align:center;margin-top:1rem;opacity:.8">
+        لینک عمومی تو: <br/>
+        <strong id="publicLink">hnstabeo.ir/@ali</strong>
+        <i class="fas fa-copy" onclick="copyLink()" style="cursor:pointer;margin-right:.5rem"></i>
+      </p>
+    </div>
+  </div>
+
+  <!-- اسکریپت‌ها -->
+  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+  <script src="assets/js/main.js"></script>
+
+<script>
+// بارگذاری داده کاربر
+let userData = JSON.parse(localStorage.getItem('instabeo_user') || '{}');
+
+// داده اولیه اگه کاربر جدید بود
+if (!userData.username) {
+  userData = {
+    username: "@guest",
+    bio: "سلام! من توی اینستابیو هستم",
+    avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&crop=face",
+    theme: "cosmic-flow",
+    themeVideo: "https://assets.mixkit.co/videos/preview/mixkit-stars-moving-in-deep-space-30704-small.mp4",
+    links: [
+      {title: "اینستاگرام", url: "https://instagram.com", icon: "fab fa-instagram"},
+      {title: "تلگرام", url: "https://t.me", icon: "fab fa-telegram"},
+      {title: "یوتیوب", url: "https://youtube.com", icon: "fab fa-youtube"}
+    ]
+  };
+}
+
+// تبدیل تم‌های قدیمی به تم متحرک
+if (userData.theme && !userData.themeVideo) {
+  const videoMap = {
+    "cosmic-flow": "https://assets.mixkit.co/videos/preview/mixkit-stars-moving-in-deep-space-30704-small.mp4",
+    "purple-nebula": "https://assets.mixkit.co/videos/preview/mixkit-nebula-background-with-rotating-motion-30703-small.mp4",
+    "electric-galaxy": "https://assets.mixkit.co/videos/preview/mixkit-abstract-video-of-galaxy-with-electric-energy-30706-small.mp4",
+    "aurora-dance": "https://assets.mixkit.co/videos/preview/mixkit-aurora-borealis-in-a-night-sky-30705-small.mp4",
+    "space-tunnel": "https://assets.mixkit.co/videos/preview/mixkit-flying-through-a-tunnel-of-stars-30708-small.mp4",
+    "pink-galaxy": "https://assets.mixkit.co/videos/preview/mixkit-galaxy-background-in-pink-tone-30709-small.mp4",
+    "golden-cosmos": "https://assets.mixkit.co/videos/preview/mixkit-golden-galaxy-with-moving-stars-30707-small.mp4",
+    "ice-void": "https://assets.mixkit.co/videos/preview/mixkit-icy-blue-galaxy-animation-30710-small.mp4",
+    "blood-moon": "https://assets.mixkit.co/videos/preview/mixkit-red-nebula-with-moving-stars-30711-small.mp4",
+    "starfall": "https://assets.mixkit.co/videos/preview/mixkit-stars-falling-in-the-night-sky-30712-small.mp4",
+    "hologram": "https://assets.mixkit.co/videos/preview/mixkit-holographic-waves-in-motion-30713-small.mp4",
+    "deep-void": "https://assets.mixkit.co/videos/preview/mixkit-deep-space-animation-with-moving-stars-30714-small.mp4"
+  };
+  userData.themeVideo = videoMap[userData.theme] || videoMap["cosmic-flow"];
+}
+
+// ذخیره اولیه
+localStorage.setItem('instabeo_user', JSON.stringify(userData));
+
+// پر کردن فرم
+document.getElementById('username').value = userData.username || '@guest';
+document.getElementById('bio').value = userData.bio || '';
+document.getElementById('avatarImg').src = userData.avatar;
+document.getElementById('publicLink').textContent = `instabeo.ir${userData.username || '@guest'}`;
+
+// ارسال داده به پیش‌نمایش
+function sendFullDataToPreview() {
+  const iframe = document.getElementById('previewFrame');
+  if (iframe?.contentWindow) {
+    iframe.contentWindow.postMessage({ type: 'fullUpdate', payload: userData }, '*');
+  }
+}
+
+// ذخیره + رفرش پیش‌نمایش (تابع اصلی تو)
+function saveAndRefresh() {
+  localStorage.setItem('instabeo_user', JSON.stringify(userData));
+  document.getElementById('publicLink').textContent = `instabeo.ir${userData.username || '@user'}`;
+  sendFullDataToPreview();
+}
+
+// رندر لینک‌ها
+function renderLinks() {
+  const c = document.getElementById('linksContainer');
+  c.innerHTML = '';
+  (userData.links || []).forEach((link, i) => {
+    const div = document.createElement('div');
+    div.className = 'link-item';
+    div.innerHTML = `
+      <div class="form-group">
+        <input type="text" value="${link.title}" onchange="userData.links[${i}].title=this.value; saveAndRefresh()">
+        <label>عنوان</label>
+      </div>
+      <div class="form-group">
+        <input type="url" value="${link.url}" onchange="userData.links[${i}].url=this.value; saveAndRefresh()">
+        <label>لینک</label>
+      </div>
+      <button class="btn btn-ghost" onclick="userData.links.splice(${i},1); renderLinks(); saveAndRefresh()">حذف</button>
+    `;
+    c.appendChild(div);
+  });
+}
+
+function addLink() {
+  userData.links.push({title: "لینک جدید", url: "https://"});
+  renderLinks();
+  saveAndRefresh();
+}
+
+// آواتار از فایل
+document.getElementById('avatarInput').addEventListener('change', e => {
+  const file = e.target.files[0];
+  if (file) {
+    const reader = new FileReader();
+    reader.onload = ev => {
+      userData.avatar = ev.target.result;
+      document.getElementById('avatarImg').src = userData.avatar;
+      saveAndRefresh();
+    };
+    reader.readAsDataURL(file);
+  }
+});
+
+// آواتار از لینک
+function applyAvatarFromLink() {
+  const link = document.getElementById('avatarLink').value.trim();
+  if (!link) return alert('لینک رو وارد کن');
+  const img = new Image();
+  img.onload = () => {
+    userData.avatar = link;
+    document.getElementById('avatarImg').src = link;
+    document.getElementById('avatarLink').value = '';
+    saveAndRefresh();
+  };
+  img.onerror = () => alert('لینک اشتباهه!');
+  img.src = link;
+}
+
+// آواتار از گالری
+function setAvatar(src) {
+  userData.avatar = src;
+  document.getElementById('avatarImg').src = src;
+  saveAndRefresh();
+}
+
+document.querySelectorAll('.theme-card').forEach(card => {
+  card.onclick = () => {
+    document.querySelectorAll('.theme-card').forEach(c => c.classList.remove('active'));
+    card.classList.add('active');
+
+    const themeName = card.dataset.theme;
+    userData.theme = themeName;
+
+    const videoSource = card.querySelector('video source');
+    if (videoSource) {
+      userData.themeVideo = videoSource.getAttribute('src');  // این خط حتماً باشه!
+      delete userData.customBg;
+    } else if (themeName === 'custom') {
+      if (!userData.customBg) {
+        alert('اول عکس آپلود کن!');
+        card.classList.remove('active');
+        document.querySelector('.theme-card')?.classList.add('active');
+        return;
+      }
+      delete userData.themeVideo;
+    } else {
+      delete userData.themeVideo;
+      delete userData.customBg;
+    }
+
+    saveAndRefresh();
+    localStorage.setItem('instabeo_user', JSON.stringify(userData)); // این خط رو هم اضافه کن
+  };
+});
+
+// آپلود تم شخصی
+document.getElementById('customBgInput').addEventListener('change', function(e) {
+  const file = e.target.files[0];
+  if (!file) return;
+
+  const reader = new FileReader();
+  reader.onload = function(ev) {
+    userData.customBg = ev.target.result;
+    userData.theme = 'custom';
+    delete userData.themeVideo;
+
+    const preview = document.getElementById('customPreview');
+    preview.style.backgroundImage = `url('${ev.target.result}')`;
+    preview.style.backgroundSize = 'cover';
+    preview.style.backgroundPosition = 'center';
+    preview.innerHTML = '<div style="position:absolute;inset:0;background:rgba(0,0,0,.4);border-radius:12px"></div><div style="position:relative;z-index:2;color:#fff;text-align:center;padding-top:30px;font-weight:600">تم شخصی من</div>';
+
+    document.querySelectorAll('.theme-card').forEach(c => c.classList.remove('active'));
+    document.querySelector('[data-theme="custom"]')?.classList.add('active');
+
+    saveAndRefresh();
+  };
+  reader.readAsDataURL(file);
+});
+
+// آپدیت زنده نام و بیو
+document.getElementById('username').oninput = e => { userData.username = e.target.value || '@user'; saveAndRefresh(); };
+document.getElementById('bio').oninput = e => { userData.bio = e.target.value; saveAndRefresh(); };
+
+// کپی لینک
+function copyLink() {
+  navigator.clipboard.writeText('https://instabeo.ir' + userData.username);
+  alert('کپی شد!');
+}
+
+// فعال کردن تم ذخیره شده
+if (userData.theme) {
+  document.querySelector(`[data-theme="${userData.theme}"]`)?.classList.add('active');
+}
+
+// اجرای اولیه
+renderLinks();
+window.onload = () => setTimeout(sendFullDataToPreview, 600);
+</script>
