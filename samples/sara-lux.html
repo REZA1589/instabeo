@@ -1,47 +1,34 @@
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SARA | اینفلوئنسر مد و زیبایی</title>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>@sara.lux | اینستابیو</title>
 <style>
-  body{background:url('https://images.unsplash.com/photo-1531306728370-e2ebd9d7bb99?w=1920&q=80') center/cover fixed}
-  .link-btn{background:linear-gradient(45deg,#8B00FF,#FF1493)!important;border:none;box-shadow:0 0 35px #8B00FF}
-  .username{color:#FF1493;text-shadow:0 0 25px #8B00FF;font-family:'Vazirmatn',sans-serif}
-  .bio{color:#8B00FF;text-shadow:0 0 20px #FF1493}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:linear-gradient(135deg,#fff5f8,#f8e8ff);color:#333;font-family:system-ui,sans-serif}
+.container{max-width:420px;margin:0 auto;padding:2rem;min-height:100vh;display:flex;flex-direction:column;justify-content:center}
+.card{background:rgba(255,255,255,0.25);backdrop-filter:blur(30px);border:3px solid rgba(255,105,180,0.5);border-radius:40px;padding:3.5rem 2rem;text-align:center;box-shadow:0 0 100px rgba(255,105,180,0.4)}
+.avatar{width:170px;height:170px;border-radius:50%;border:7px solid #ff69b4;box-shadow:0 0 70px #ff69b4;margin:0 auto 1.5rem}
+h1{font-size:3.4rem;background:linear-gradient(45deg,#ff69b4,#ffb6c1);-webkit-background-clip:text;color:transparent;margin:1rem 0}
+p{font-size:1.5rem;color:#ff69b4;margin:1.5rem 0}
+.links{gap:1.4rem;margin:3rem 0}
+.btn{background:rgba(255,105,180,0.2);border:2px solid #ff69b4;color:#ff69b4;padding:1.5rem;border-radius:50px;font-size:1.45rem;font-weight:900}
+.btn:hover{box-shadow:0 0 60px #ff69b4;transform:scale(1.06)}
+.cta{background:#ff69b4;color:#fff;box-shadow:0 0 70px #ff69b4}
 </style>
-
-<style>
-  body {font-family: 'Vazirmatn', sans-serif; color: white; background: #000; direction: rtl;}
-  .username {font-size: 2.8rem; text-align: center; margin: 1rem;}
-  .bio {font-size: 1.4rem; text-align: center;}
-  .link-btn {font-size: 1.3rem; padding: 1rem;}
-</style>
-
-
 </head>
 <body>
-<div id="particles-js"></div>
-<div class="profile-container">
-  <div class="profile-card">
-    <div class="avatar-glow"><img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=400&h=400&fit=crop&crop=face" class="avatar"></div>
-    <h1 class="username">@sara.lux</h1>
-    <p class="bio">اینفلوئنسر مد و زیبایی • ۱.۲M فالوور • تهران-دبی</p>
+<div class="container">
+  <div class="card">
+    <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=600" class="avatar">
+    <h1>@sara.lux</h1>
+    <p>اینفلوئنسر زیبایی • ۱.۲M فالوور • تهران-دبی</p>
     <div class="links">
-      <a href="#" class="link-btn"><i class="fab fa-instagram"></i><span>اینستاگرام اصلی</span></a>
-      <a href="#" class="link-btn"><i class="fab fa-youtube"></i><span>یوتیوب (ویلاگ)</span></a>
-      <a href="#" class="link-btn"><i class="fab fa-telegram"></i><span>کانال تخفیف</span></a>
-      <a href="#" class="link-btn"><i class="fas fa-shopping-bag"></i><span>فروشگاه آنلاین</span></a>
+      <div class="btn"><i class="fab fa-instagram fa-2x"></i> اینستاگرام</div>
+      <div class="btn"><i class="fab fa-youtube fa-2x"></i> ویلاگ</div>
     </div>
-    <div class="stats"><span>۲,۱۱۴,۷۷۷ بازدید</span></div>
-    <div class="powered-by">ساخته شده با <b>اینستابیو</b></div>
   </div>
 </div>
-<a href="../dashboard.html" class="btn btn-primary" style="position:fixed;bottom:20px;left:50%;transform:translateX(-50%);padding:1rem 3rem;font-size:1.6rem;background:linear-gradient(45deg,#8B00FF,#FF1493);box-shadow:0 0 50px #8B00FF">
-  همین الان صفحه خودتو بساز
-</a>
-<script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
-<script src="../assets/js/main.js"></script>
+<a href="../dashboard.html" class="cta">پروفایل زیبایی خودتو بساز</a>
 </body>
 </html>
