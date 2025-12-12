@@ -835,3 +835,91 @@ body.profile-page {
   .nav-buttons { justify-content: center; }
   .neon-btn { font-size: 1rem; padding: 0.8rem 1.5rem; }
 }
+
+/* داشبورد روی موبایل — ۱۰۰٪ درست، زیبا و روان */
+@media (max-width: 992px) {
+  .dashboard-grid {
+    grid-template-columns: 1fr !important;
+    gap: 2rem;
+    padding: 7rem 1rem 3rem !important;
+  }
+
+  /* ویرایشگر بالا، پیش‌نمایش پایین */
+  .editor-panel {
+    position: relative;
+    top: 0;
+  }
+
+  /* پیش‌نمایش کوچیک و خفن مثل گوشی واقعی */
+  .mobile-frame {
+    max-width: 380px;
+    margin: 2rem auto;
+    border: 12px solid #000;
+    border-radius: 40px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.8);
+    background: #000;
+    overflow: hidden;
+  }
+
+  #previewFrame {
+    width: 100%;
+    height: 720px;
+    border: none;
+    transform: scale(0.98);
+  }
+
+  /* فرم‌ها توی موبایل */
+  .form-group input,
+  .form-group textarea {
+    font-size: 1.1rem !important;
+    padding: 1rem !important;
+  }
+
+  /* تم‌ها روی موبایل — ۳ تایی عمودی */
+  .themes-grid-mobile {
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 12px !important;
+  }
+
+  .theme-thumb video,
+  .theme-thumb {
+    height: 90px !important;
+    border-radius: 16px !important;
+  }
+
+  /* دکمه‌ها بزرگ‌تر و راحت‌تر */
+  .btn, button, .neon-btn {
+    font-size: 1.1rem !important;
+    padding: 1rem 1.5rem !important;
+    min-height: 56px;
+  }
+
+  /* هدر روی موبایل */
+  .dashboard-header .container {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .nav-buttons {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.8rem;
+  }
+}
+
+/* برای گوشی‌های خیلی کوچیک (آیفون SE و پایین */
+@media (max-width: 480px) {
+  .themes-grid-mobile {
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 10px;
+  }
+  .theme-thumb video,
+  .theme-thumb {
+    height: 80px !important;
+  }
+  .mobile-frame {
+    border-width: 10px;
+    border-radius: 36px;
+  }
+  h2 { font-size: 1.8rem !important; }
+}
