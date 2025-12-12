@@ -1,81 +1,40 @@
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>@neon.gamer | اینستابیو</title>
-  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;700&family=Orbitron:wght@700;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>@neon.gamer | اینستابیو</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#000 url('https://images.unsplash.com/photo-1542751371-adc38448a05e?w=1920') center/cover fixed;color:#fff;font-family:system-ui,sans-serif;overflow-x:hidden}
+.container{max-width:420px;margin:0 auto;padding:2rem;min-height:100vh;display:flex;flex-direction:column;justify-content:center}
+.card{background:rgba(0,0,0,0.65);backdrop-filter:blur(20px);border:3px solid #00ffff;border-radius:36px;padding:3rem 2rem;text-align:center;box-shadow:0 0 80px rgba(0,255,255,0.6)}
+.avatar{width:160px;height:160px;border-radius:50%;border:6px solid #00ffff;box-shadow:0 0 60px #00ffff;margin:0 auto 1.5rem}
+h1{font-size:3.2rem;background:linear-gradient(45deg,#ff003c,#00ffff);-webkit-background-clip:text;color:transparent;margin:1rem 0;letter-spacing:1px}
+p{font-size:1.45rem;margin:1.5rem 0;opacity:0.95}
+.links{display:flex;flex-direction:column;gap:1.3rem;margin:2.5rem 0}
+.btn{background:rgba(0,255,255,0.2);border:2px solid #00ffff;color:#fff;padding:1.4rem;border-radius:50px;font-size:1.4rem;font-weight:900;transition:.4s;display:flex;align-items:center;justify-content:center;gap:12px}
+.btn:hover{transform:scale(1.05);box-shadow:0 0 50px #00ffff;background:rgba(0,255,255,0.4)}
+.cta{position:fixed;bottom:25px;left:50%;transform:translateX(-50%);background:#ff003c;color:#fff;padding:1.3rem 3.5rem;border-radius:50px;font-size:1.6rem;font-weight:900;box-shadow:0 0 60px #ff003c;z-index:999}
+@media(max-width:480px){
+  h1{font-size:2.8rem}
+  .btn{font-size:1.3rem;padding:1.3rem}
+}
+</style>
 </head>
 <body>
-
-  <style>
-  body {font-family: 'Vazirmatn', sans-serif; color: white; background: #000; direction: rtl;}
-  .username {font-size: 2.8rem; text-align: center; margin: 1rem;}
-  .bio {font-size: 1.4rem; text-align: center;}
-  .link-btn {font-size: 1.3rem; padding: 1rem;}
-</style>
-
-
-  <div id="particles-js"></div>
-  <div id="galaxy-bg"></div>
-
-  <div class="profile-container">
-    <div class="profile-card">
-      <div class="avatar-glow">
-        <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=400&h=400&fit=crop&crop=face" alt="neon gamer" class="avatar" />
-        <div class="avatar-ring"></div>
-      </div>
-
-      <h1 class="username">@neon.gamer</h1>
-      <p class="bio">رتبه ۱ پابجی موبایل • استریمر توییچ • ۲.۳M فالوور</p>
-
-      <div class="links">
-        <a href="https://twitch.tv" target="_blank" class="link-btn neon-gradient">
-          <i class="fab fa-twitch"></i>
-          <span>توییچ زنده</span>
-          <i class="fas fa-external-link-alt arrow"></i>
-        </a>
-        <a href="https://youtube.com" target="_blank" class="link-btn neon-gradient">
-          <i class="fab fa-youtube"></i>
-          <span>کانال یوتیوب</span>
-          <i class="fas fa-external-link-alt arrow"></i>
-        </a>
-        <a href="https://instagram.com" target="_blank" class="link-btn neon-gradient">
-          <i class="fab fa-instagram"></i>
-          <span>اینستاگرام</span>
-          <i class="fas fa-external-link-alt arrow"></i>
-        </a>
-        <a href="https://discord.gg" target="_blank" class="link-btn neon-gradient">
-          <i class="fab fa-discord"></i>
-          <span>سرور گیمینگ</span>
-          <i class="fas fa-external-link-alt arrow"></i>
-        </a>
-      </div>
-
-      <div class="stats">
-        <span><i class="fas fa-eye"></i> ۳,۸۴۲,۱۱۹ بازدید</span>
-      </div>
-
-      <div class="powered-by">
-        ساخته شده با <span class="heart">❤️</span> توسط 
-        <a href="https://instabeo.ir" target="_blank">اینستابیو</a>
-      </div>
+<div class="container">
+  <div class="card">
+    <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=600" class="avatar">
+    <h1>@neon.gamer</h1>
+    <p>رتبه ۱ پابجی • استریمر توییچ • ۲.۳M فالوور</p>
+    <div class="links">
+      <div class="btn"><i class="fab fa-twitch fa-2x"></i> توییچ زنده</div>
+      <div class="btn"><i class="fab fa-youtube fa-2x"></i> ۲ میلیون ساب</div>
+      <div class="btn"><i class="fab fa-instagram fa-2x"></i> اینستاگرام</div>
     </div>
+    <p style="margin-top:2rem;font-size:1.6rem">۳,۸۴۲,۱۱۹ بازدید</p>
   </div>
-
-  <div style="position:fixed;bottom:20px;left:50%;transform:translateX(-50%);z-index:999">
-    <a href="../dashboard.html" class="btn btn-primary" style="padding:1rem 2.5rem;font-size:1.5rem;box-shadow:0 0 40px #00ffff">
-      همین الان پروفایل خودتو بساز!
-    </a>
-  </div>
-
-  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
-  <script src="../assets/js/main.js"></script>
-
-  <!-- تم نئون گیمر
-  <script>
-    document.body.style.background = "url('https://images.unsplash.com/photo-1542751371-adc38448a05e?w=1920&q=80') center/cover fixed";
-  </script>
+</div>
+<a href="../dashboard.html" class="cta">پروفایل گیمینگ خودتو بساز!</a>
 </body>
 </html>
