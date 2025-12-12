@@ -1,44 +1,35 @@
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LUXURY CEO | زندگی لاکچری</title>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>@luxury.ceo | اینستابیو</title>
 <style>
-  body{background:url('https://images.unsplash.com/photo-1516339901601-2e1b62dc0c45?w=1920&q=80') center/cover fixed}
-  .link-btn{background:linear-gradient(45deg,#ffd700,#b8860b)!important;border:none;color:#000;box-shadow:0 0 30px #ffd700}
-  .username,.bio{color:#ffd700;text-shadow:0 0 20px #000}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#0a0a0a url('https://images.unsplash.com/photo-1516339901601-2e1b62dc0c45?w=1920') center/cover fixed;color:#fff;font-family:system-ui,sans-serif}
+.container{max-width:420px;margin:0 auto;padding:2rem;min-height:100vh;display:flex;flex-direction:column;justify-content:center}
+.card{background:rgba(15,15,15,0.7);backdrop-filter:blur(30px);border:3px solid #ffd700;border-radius:40px;padding:3.5rem 2rem;text-align:center;box-shadow:0 0 100px rgba(255,215,0,0.5)}
+.avatar{width:170px;height:170px;border-radius:50%;border:7px solid #ffd700;box-shadow:0 0 70px gold;margin:0 auto 1.5rem}
+h1{font-size:3.4rem;background:linear-gradient(45deg,#ffd700,#fff,#ffd700);-webkit-background-clip:text;color:transparent;margin:1rem 0}
+p{font-size:1.5rem;margin:1.5rem 0}
+.links{gap:1.4rem;margin:3rem 0}
+.btn{background:rgba(255,215,0,0.2);border:2px solid #ffd700;color:#ffd700;padding:1.5rem;border-radius:50px;font-size:1.45rem;font-weight:900}
+.btn:hover{box-shadow:0 0 60px gold;transform:scale(1.06)}
+.cta{background:#ffd700;color:#000;box-shadow:0 0 70px gold}
 </style>
-
-<style>
-  body {font-family: 'Vazirmatn', sans-serif; color: white; background: #000; direction: rtl;}
-  .username {font-size: 2.8rem; text-align: center; margin: 1rem;}
-  .bio {font-size: 1.4rem; text-align: center;}
-  .link-btn {font-size: 1.3rem; padding: 1rem;}
-</style>
-
 </head>
 <body>
-<div id="particles-js"></div>
-<div class="profile-container">
-  <div class="profile-card">
-    <div class="avatar-glow"><img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&crop=face" class="avatar"></div>
-    <h1 class="username">@luxury.ceo</h1>
-    <p class="bio">مدیرعامل • سرمایه‌گذار • زندگی لاکچری در دبی</p>
+<div class="container">
+  <div class="card">
+    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600" class="avatar">
+    <h1>@luxury.ceo</h1>
+    <p>مدیرعامل • سرمایه‌گذار • دبی • لاکچری لایف</p>
     <div class="links">
-      <a href="#" class="link-btn"><i class="fab fa-instagram"></i><span>اینستاگرام VIP</span></a>
-      <a href="#" class="link-btn"><i class="fas fa-globe"></i><span>وبسایت شخصی</span></a>
-      <a href="#" class="link-btn"><i class="fab fa-telegram"></i><span>کانال خصوصی</span></a>
+      <div class="btn"><i class="fab fa-instagram fa-2x"></i> اینستاگرام VIP</div>
+      <div class="btn"><i class="fas fa-crown fa-2x"></i> عضویت خصوصی</div>
     </div>
-    <div class="stats"><span>۱,۲۷۳,۸۸۸ بازدید</span></div>
-    <div class="powered-by">ساخته شده با <b>اینستابیو</b></div>
+    <p style="margin-top:2rem;font-size:1.7rem">۱,۸۴۲,۳۳۳ بازدید</p>
   </div>
 </div>
-<a href="../dashboard.html" class="btn btn-primary" style="position:fixed;bottom:20px;left:50%;transform:translateX(-50%);padding:1rem 2.5rem;font-size:1.5rem;box-shadow:0 0 40px gold">
-  پروفایل لاکچری خودتو بساز
-</a>
-<script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
-<script src="../assets/js/main.js"></script>
+<a href="../dashboard.html" class="cta">پروفایل لاکچری خودتو بساز</a>
 </body>
 </html>
