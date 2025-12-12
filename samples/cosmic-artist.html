@@ -1,45 +1,35 @@
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>COSMIC ARTIST | هنرمند دیجیتال</title>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>@cosmic.artist | اینستابیو</title>
 <style>
-  body{background:url('https://images.unsplash.com/photo-1507499739999-097706ad8914?w=1920&q=80') center/cover fixed}
-  .link-btn{background:linear-gradient(45deg,#ff00ff,#00ffff)!important;border:none;box-shadow:0 0 30px #ff00ff}
-  .username{color:#ff00ff;text-shadow:0 0 25px #00ffff}
-  .bio{color:#00ffff;text-shadow:0 0 20px #ff00ff}
-  .powered-by a{color:#ff00ff}
-</style>
-<style>
-  body {font-family: 'Vazirmatn', sans-serif; color: white; background: #000; direction: rtl;}
-  .username {font-size: 2.8rem; text-align: center; margin: 1rem;}
-  .bio {font-size: 1.4rem; text-align: center;}
-  .link-btn {font-size: 1.3rem; padding: 1rem;}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#000 url('https://images.unsplash.com/photo-1507499739999-097706ad8914?w=1920') center/cover fixed;color:#fff;font-family:system-ui,sans-serif}
+.container{max-width:420px;margin:0 auto;padding:2rem;min-height:100vh;display:flex;flex-direction:column;justify-content:center}
+.card{background:rgba(20,0,50,0.65);backdrop-filter:blur(30px);border:3px solid #ff00ff;border-radius:40px;padding:3rem 2rem;text-align:center;box-shadow:0 0 100px rgba(255,0,255,0.6)}
+.avatar{width:165px;height:165px;border-radius:50%;border:6px solid #ff00ff;box-shadow:0 0 70px #ff00ff;margin:0 auto 1.5rem}
+h1{font-size:3.3rem;background:linear-gradient(45deg,#8a2be2,#ff00ff,#00ffff);-webkit-background-clip:text;color:transparent;animation:glitch 4s infinite}
+p{font-size:1.5rem;margin:1.5rem 0}
+.links{gap:1.4rem;margin:3rem 0}
+.btn{background:rgba(255,0,255,0.2);border:2px solid #ff00ff;color:#ff00ff;padding:1.5rem;border-radius:50px;font-size:1.45rem;font-weight:900}
+.btn:hover{box-shadow:0 0 60px #ff00ff;transform:scale(1.06)}
+@keyframes glitch{0%,100%{text-shadow:0 0 20px #ff00ff}50%{text-shadow:5px 0 20px #00ffff,-5px 0 20px #ff00ff}}
+.cta{background:#ff00ff;color:#fff;box-shadow:0 0 70px #ff00ff}
 </style>
 </head>
 <body>
-<div id="particles-js"></div>
-<div class="profile-container">
-  <div class="profile-card">
-    <div class="avatar-glow"><img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=400&h=400&fit=crop&crop=face" class="avatar"></div>
-    <h1 class="username">@cosmic.artist</h1>
-    <p class="bio">نقاش دیجیتال • خالق NFT • ۵۰۰K فالوور • رویاهای کهکشانی</p>
+<div class="container">
+  <div class="card">
+    <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=600" class="avatar">
+    <h1>@cosmic.artist</h1>
+    <p>نقاش دیجیتال • خالق NFT • رویاهای کهکشانی</p>
     <div class="links">
-      <a href="#" class="link-btn"><i class="fab fa-instagram"></i><span>گالری آثار</span></a>
-      <a href="#" class="link-btn"><i class="fab fa-opensea"></i><span>NFT Collection</span></a>
-      <a href="#" class="link-btn"><i class="fab fa-twitch"></i><span>لایو نقاشی</span></a>
-      <a href="#" class="link-btn"><i class="fab fa-discord"></i><span>سرور آرتیست‌ها</span></a>
+      <div class="btn"><i class="fab fa-instagram fa-2x"></i> گالری آثار</div>
+      <div class="btn"><i class="fas fa-paint-brush fa-2x"></i> لایو نقاشی</div>
     </div>
-    <div class="stats"><span>۹۲۸,۴۴۱ بازدید</span></div>
-    <div class="powered-by">ساخته شده با <b>اینستابیو</b></div>
   </div>
 </div>
-<a href="../dashboard.html" class="btn btn-primary" style="position:fixed;bottom:20px;left:50%;transform:translateX(-50%);padding:1rem 2.5rem;font-size:1.5rem;background:linear-gradient(45deg,#ff00ff,#00ffff);box-shadow:0 0 40px #ff00ff">
-  پروفایل هنری خودتو بساز
-</a>
-<script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
-<script src="../assets/js/main.js"></script>
+<a href="../dashboard.html" class="cta">پروفایل هنری خودتو بساز</a>
 </body>
 </html>
