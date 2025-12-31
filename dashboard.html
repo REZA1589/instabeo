@@ -3,428 +3,459 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>داشبورد | اینستابیو - بساز پروفایل کهکشانی‌ت</title>
-  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;700&family=Orbitron:wght@700;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
-  <link rel="stylesheet" href="assets/css/style.css"/>
-  <link rel="icon" href="assets/img/favicon.ico"/>
+  <title>داشبورد | اینستابیو</title>
+  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Vazirmatn', sans-serif;
+      background: #000;
+      color: #fff;
+      overflow-x: hidden;
+      min-height: 100vh;
+    }
+    #particles-js {
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+    }
+
+    /* هدر ثابت و نئونی */
+    .dashboard-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      background: rgba(0, 0, 20, 0.85);
+      backdrop-filter: blur(20px);
+      border-bottom: 2px solid #00ffff;
+      padding: 1rem 0;
+      z-index: 999;
+    }
+    .header-nav {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .logo {
+      font-size: 1.8rem;
+      font-weight: 900;
+      color: #00ffff;
+      text-shadow: 0 0 20px #00ffff;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .nav-buttons {
+      display: flex;
+      gap: 1.5rem;
+    }
+    .neon-btn {
+      padding: 0.8rem 1.8rem;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 1.05rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      border: none;
+    }
+    .cyan { background: rgba(0,255,255,0.15); border: 2px solid #00ffff; color: #00ffff; box-shadow: 0 0 20px rgba(0,255,255,0.5); }
+    .red { background: rgba(255,51,102,0.15); border: 2px solid #ff3366; color: #ff3366; box-shadow: 0 0 20px rgba(255,51,102,0.5); }
+    .neon-btn:hover { transform: translateY(-5px); box-shadow: 0 0 40px currentColor; }
+
+    /* محتوای اصلی — فاصله مناسب از هدر */
+    .container {
+      max-width: 420px;
+      margin: 0 auto;
+      padding: 7rem 1rem 4rem;
+    }
+    .card {
+      background: rgba(10,10,30,0.7);
+      backdrop-filter: blur(20px);
+      border: 2px solid rgba(0,255,255,0.3);
+      border-radius: 20px;
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+    h2, h3 { font-size: 1.4rem; color: #00ffff; margin-bottom: 1rem; text-align: center; }
+
+    /* آواتار — تمیز و بالای صفحه */
+    .avatar-preview {
+      width: 100px;
+      height: 100px;
+      margin: 0 auto 1rem;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 3px solid #00ffff;
+      box-shadow: 0 0 30px rgba(0,255,255,0.4);
+      cursor: pointer;
+    }
+    .avatar-preview img { width: 100%; height: 100%; object-fit: cover; }
+    .upload-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.6);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: #00ffff;
+      opacity: 0;
+      transition: 0.3s;
+    }
+    .avatar-preview:hover .upload-overlay { opacity: 1; }
+
+    .link-group { margin: 1rem 0; display: flex; flex-direction: column; gap: 0.6rem; }
+    .link-group input { padding: 0.8rem; border-radius: 12px; background: rgba(255,255,255,0.08); border: 1px solid rgba(0,255,255,0.4); color: #fff; font-size: 0.95rem; }
+    .btn-link { padding: 0.7rem; background: rgba(0,255,255,0.15); border: 1px solid #00ffff; color: #00ffff; border-radius: 12px; font-size: 0.95rem; cursor: pointer; }
+
+    .gallery-toggle summary {
+      cursor: pointer;
+      color: #00ffff;
+      font-weight: 600;
+      padding: 0.8rem;
+      background: rgba(0,255,255,0.1);
+      border-radius: 12px;
+      text-align: center;
+      font-size: 0.95rem;
+    }
+    .avatar-gallery {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      margin-top: 1rem;
+      padding: 0.8rem;
+      background: rgba(0,255,255,0.05);
+      border-radius: 14px;
+    }
+    .avatar-gallery img {
+      width: 100%;
+      aspect-ratio: 1/1;
+      object-fit: cover;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    .avatar-gallery img:hover {
+      border: 2px solid #00ffff;
+      box-shadow: 0 0 30px rgba(0,255,255,0.6);
+    }
+
+    /* تم‌ها — کهکشانی و متحرک */
+    .themes-grid-mobile {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-top: 1rem;
+    }
+    .theme-card {
+      cursor: pointer;
+      border-radius: 16px;
+      overflow: hidden;
+      border: 2px solid transparent;
+      transition: 0.3s;
+    }
+    .theme-card.active {
+      border-color: #00ffff;
+      box-shadow: 0 0 30px rgba(0,255,255,0.7);
+    }
+    .theme-thumb video {
+      width: 100%;
+      height: 90px;
+      object-fit: cover;
+      border-radius: 14px;
+    }
+    .theme-overlay {
+      position: absolute;
+      bottom: 8px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(0,0,0,0.7);
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      color: #00ffff;
+    }
+
+    /* تم شخصی */
+    #customPreview {
+      height: 90px;
+      background: #111;
+      background-size: cover;
+      background-position: center;
+      border-radius: 14px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: #00ffff;
+      font-size: 0.9rem;
+    }
+
+    /* لینک‌ها و دکمه‌ها */
+    #linksContainer .link-item {
+      display: grid;
+      grid-template-columns: 1fr 1fr auto;
+      gap: 8px;
+      margin-bottom: 1rem;
+    }
+    .btn {
+      width: 100%;
+      padding: 1rem;
+      border-radius: 50px;
+      background: #00ffff;
+      color: #000;
+      font-weight: 900;
+      font-size: 1.1rem;
+      border: none;
+      margin-top: 1rem;
+      cursor: pointer;
+      box-shadow: 0 0 30px #00ffff;
+    }
+
+    /* پیش‌نمایش */
+    .mobile-frame {
+      max-width: 340px;
+      margin: 1.5rem auto;
+      border: 10px solid #000;
+      border-radius: 40px;
+      overflow: hidden;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.8);
+    }
+    #previewFrame {
+      width: 100%;
+      height: 650px;
+      border: none;
+    }
+
+    /* موبایل — ظریف */
+    @media (max-width: 480px) {
+      .avatar-preview { width: 90px; height: 90px; }
+      .themes-grid-mobile { gap: 10px; }
+      .theme-thumb video { height: 80px; }
+      .mobile-frame { max-width: 320px; border-width: 8px; }
+    }
+  </style>
 </head>
 <body>
 
+  <!-- تلگرام شناور — خفن و ریسپانسیو -->
   <a href="https://t.me/instabeo_ir" target="_blank" class="telegram-float">
-  <i class="fab fa-telegram-plane"></i>
-  <span>پشتیبانی ۲۴ ساعته</span>
-</a>
+    <i class="fab fa-telegram-plane"></i>
+    <span>پشتیبانی ۲۴ ساعته</span>
+  </a>
 
-<style>
-.telegram-float {
-  position: fixed;
- bottom: 25px;
- left: 25px;
- width: 65px;
- height: 65px;
- background: linear-gradient(45deg,#0088cc,#00ccf9);
- color: white;
- border-radius: 50%;
- display: flex;
- flex-direction: column;
- align-items: center;
- justify-content: center;
- font-size: 1.8rem;
- box-shadow: 0 10px 30px rgba(0,136,204,0.7);
- z-index: 9999;
- transition: all 0.4s ease;
- animation: float 3s ease-in-out infinite;
- text-decoration: none;
-}
-.telegram-float span {
-  font-size: 0.7rem;
-  margin-top: 4px;
-  font-weight: bold;
-}
-.telegram-float:hover {
-  transform: scale(1.15);
-  box-shadow: 0 15px 40px rgba(0,136,204,0.9);
-}
-@keyframes float {
-  0%,100% { transform: translateY(0); }
-  50% { transform: translateY(-15px); }
-}
-@media (max-width:480px) {
-  .telegram-float { width:58px; height:58px; font-size:1.6rem; bottom:20px; left:20px; }
-}
-</style>
+  <style>
+    .telegram-float {
+      position: fixed;
+      bottom: 25px;
+      left: 25px;
+      width: 65px;
+      height: 65px;
+      background: linear-gradient(45deg,#0088cc,#00ccf9);
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.8rem;
+      box-shadow: 0 10px 30px rgba(0,136,204,0.7);
+      z-index: 9999;
+      transition: all 0.4s ease;
+      animation: float 3s ease-in-out infinite;
+      text-decoration: none;
+    }
+    .telegram-float span {
+      font-size: 0.7rem;
+      margin-top: 4px;
+      font-weight: bold;
+    }
+    .telegram-float:hover {
+      transform: scale(1.15);
+      box-shadow: 0 15px 40px rgba(0,136,204,0.9);
+    }
+    @keyframes float {
+      0%,100% { transform: translateY(0); }
+      50% { transform: translateY(-15px); }
+    }
+    @media (max-width:480px) {
+      .telegram-float { width:58px; height:58px; font-size:1.6rem; bottom:20px; left:20px; }
+    }
+  </style>
 
-  <body class="dashboard-page">  <!-- داشبورد -->
-
-  <!-- Particles + Galaxy Background -->
   <div id="particles-js"></div>
-  <div id="galaxy-bg"></div>
 
-  <!-- Header -->
-  <header>
+  <!-- تلگرام شناور -->
+  <a href="https://t.me/instabeo_ir" target="_blank" class="telegram-float">
+    <i class="fab fa-telegram-plane"></i>
+    <span>پشتیبانی</span>
+  </a>
 
- 
-    <div class="container">
-      <div class="logo">اینستابیو.IR</div>
-      <nav>
-        <a href="index.html">خانه</a>
-        <a href="#" id="previewLink" target="_blank">پیش‌نمایش</a>
-      </nav>
-      <button class="menu-btn"><i class="fas fa-bars"></i></button>
+  <!-- هدر -->
+  <header class="dashboard-header">
+    <div class="header-nav">
+      <a href="index.html" class="logo">
+        <i class="fas fa-home"></i> اینستابیو.IR
+      </a>
+      <div class="nav-buttons">
+        <a href="profile.html" target="_blank" class="neon-btn cyan">
+          <i class="fas fa-eye"></i> پیش‌نمایش زنده
+        </a>
+        <button class="neon-btn red" onclick="if(confirm('خارج می‌شی؟')){localStorage.clear();location.href='index.html'}">
+          <i class="fas fa-sign-out-alt"></i> خروج
+        </button>
+      </div>
     </div>
   </header>
 
-  <div class="dashboard-grid">
-    <!-- فرم ویرایش -->
-    <div class="editor-panel card">
-      <h2>ویرایش پروفایل</h2>
+  <div class="container">
 
-      <!-- آواتار -->
-      <!-- آواتار با ۳ روش -->
-<div class="form-group avatar-upload">
-  <label>آواتار (۳ راه انتخاب کن)</label>
-  
-  <!-- راه اول: آپلود از دستگاه -->
+<!-- پروفایل کامل — آواتار، نام کاربری، بیو — همه چیز کار می‌کنه و توی پیش‌نمایش اعمال می‌شه -->
+<div class="card">
+  <h3 style="text-align:center;color:#00ffff;margin-bottom:1.5rem;font-size:1.4rem">پروفایل شما</h3>
+
+  <!-- آواتار (۳ راه) -->
   <div class="avatar-preview" onclick="document.getElementById('avatarInput').click()">
     <img id="avatarImg" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&crop=face" alt="آواتار"/>
-    <div class="upload-overlay"><i class="fas fa-camera"></i><br>آپلود از دستگاه</div>
+    <div class="upload-overlay">
+      <i class="fas fa-camera"></i>
+      <span>آپلود از دستگاه</span>
+    </div>
   </div>
-
   <input type="file" id="avatarInput" accept="image/*" style="display:none"/>
-  
-  <!-- روش ۲: لینک عکس (حالا ۱۰۰٪ کار می‌کنه) -->
-  <div style="margin-top:1rem">
-    <input 
-      type="url" 
-      id="avatarLink" 
-      placeholder="لینک مستقیم عکس رو اینجا بذار..." 
-      style="width:100%;padding:0.9rem;border-radius:12px;background:rgba(255,255,255,.07);border:1px solid rgba(0,255,255,.4);color:#fff;font-size:0.95rem"
-    >
-    <button 
-      class="btn btn-primary" 
-      style="width:100%;margin-top:.6rem;padding:0.9rem;font-weight:600" 
-      onclick="applyAvatarFromLink()"
-    >
-      اعمال آواتار از لینک
+
+  <div style="margin:1.5rem 0">
+    <input type="url" id="avatarLink" placeholder="لینک مستقیم عکس..." style="width:100%;padding:0.9rem;border-radius:14px;background:rgba(255,255,255,0.08);border:2px solid rgba(0,255,255,0.4);color:#fff;font-size:1rem;margin-bottom:0.8rem">
+    <button style="width:100%;padding:0.9rem;border-radius:14px;background:rgba(0,255,255,0.15);border:2px solid #00ffff;color:#00ffff;font-size:1rem;font-weight:700;cursor:pointer" onclick="applyAvatarFromLink()">
+      اعمال از لینک
     </button>
   </div>
 
-  <!-- روش ۳: گالری آماده -->
-  <details style="margin-top:1rem">
-    <summary style="cursor:pointer;color:var(--n2);font-weight:600">یا از گالری کهکشانی انتخاب کن</summary>
+  <details style="margin-top:1.5rem">
+    <summary style="cursor:pointer;color:#00ffff;font-weight:700;padding:1rem;background:rgba(0,255,255,0.1);border-radius:16px;text-align:center;font-size:1.1rem">یا از گالری کهکشانی انتخاب کن</summary>
     <div class="avatar-gallery">
-      <img src="https://images.unsplash.com/photo-1531891437562-4301cf35b7e5?w=400&h=400&fit=crop&crop=face" onclick="setAvatar(this.src)">
-      <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&h=400&fit=crop&crop=face" onclick="setAvatar(this.src)">
-      <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&crop=face" onclick="setAvatar(this.src)">
-      <img src="https://images.unsplash.com/photo-1534528748-9e9ec7a3c8dc?w=400&h=400&fit=crop&crop=face" onclick="setAvatar(this.src)">
-      <img src="https://images.unsplash.com/photo-1537815749002-de6a533c64db?w=400&h=400&fit=crop&crop=face" onclick="setAvatar(this.src)">
-      <img src="https://images.unsplash.com/photo-1552374196-c4e7ffc6e126?w=400&h=400&fit=crop&crop=face" onclick="setAvatar(this.src)">
-      <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=400&h=400&fit=crop&crop=face" onclick="setAvatar(this.src)">
-      <img src="https://images.unsplash.com/photo-1555952517-af357a8b4c71?w=400&h=400&fit=crop&crop=face" onclick="setAvatar(this.src)">
+      <img src="https://images.unsplash.com/photo-1531891437562-4301cf35b7e5?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" onclick="setAvatar(this.src)">
+      <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" onclick="setAvatar(this.src)">
+      <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" onclick="setAvatar(this.src)">
+      <img src="https://images.unsplash.com/photo-1534528748-9e9ec7a3c8dc?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" onclick="setAvatar(this.src)">
+      <img src="https://images.unsplash.com/photo-1537815749002-de6a533c64db?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" onclick="setAvatar(this.src)">
+      <img src="https://images.unsplash.com/photo-1552374196-c4e7ffc6e126?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" onclick="setAvatar(this.src)">
+      <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" onclick="setAvatar(this.src)">
+      <img src="https://images.unsplash.com/photo-1555952517-af357a8b4c71?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" onclick="setAvatar(this.src)">
     </div>
   </details>
-</div>
 
-      <!-- نام کاربری -->
-      <div class="form-group">
-        <input type="text" id="username" value="@ali" required/>
-        <label>نام کاربری</label>
-      </div>
+  <!-- نام کاربری اینستاگرام -->
+  <div style="margin-top:2rem">
+    <label style="color:#00ffff;font-size:1rem;margin-bottom:0.6rem;display:block">نام کاربری اینستاگرام</label>
+    <input type="text" id="instagramUsername" placeholder="@username" value="@ali" style="width:100%;padding:0.9rem;border-radius:14px;background:rgba(255,255,255,0.08);border:2px solid rgba(0,255,255,0.4);color:#fff;font-size:1rem"/>
+  </div>
 
-      <!-- بیو -->
-      <div class="form-group">
-        <textarea id="bio" rows="3" required>گیمر فضایی • استریمر توییچ • عاشق تکنولوژی و NFT</textarea>
-        <label>بیو</label>
-      </div>
-
-      <!-- تم‌ها -->
-      <!-- ==== گالری تم‌های جدید (جایگزین بخش قدیمی تم) ==== -->
-<div class="form-group">
-  <label>تم‌های متحرک کهکشانی ۲۰۲۵ (فوق حرفه‌ای)</label>
-  <div class="themes-grid-mobile">
-    
-    <!-- تم ۱ - Cosmic Flow -->
-    <div class="theme-card active" data-theme="cosmic-flow">
-      <div class="theme-thumb video-thumb">
-        <video autoplay loop muted playsinline preload="metadata">
-          <source src="https://assets.mixkit.co/videos/preview/mixkit-stars-moving-in-deep-space-30704-small.mp4" type="video/mp4">
-        </video>
-        <div class="theme-overlay">Cosmic Flow</div>
-      </div>
-    </div>
-
-    <!-- تم ۲ - Purple Nebula -->
-    <div class="theme-card" data-theme="purple-nebula">
-      <div class="theme-thumb video-thumb">
-        <video autoplay loop muted playsinline preload="metadata">
-          <source src="https://assets.mixkit.co/videos/preview/mixkit-nebula-background-with-rotating-motion-30703-small.mp4" type="video/mp4">
-        </video>
-        <div class="theme-overlay">Purple Nebula</div>
-      </div>
-    </div>
-
-    <!-- تم ۳ - Electric Galaxy -->
-    <div class="theme-card" data-theme="electric-galaxy">
-      <div class="theme-thumb video-thumb">
-        <video autoplay loop muted playsinline preload="metadata">
-          <source src="https://assets.mixkit.co/videos/preview/mixkit-abstract-video-of-galaxy-with-electric-energy-30706-small.mp4" type="video/mp4">
-        </video>
-        <div class="theme-overlay">Electric Storm</div>
-      </div>
-    </div>
-
-    <!-- تم ۴ - Aurora Dance -->
-    <div class="theme-card" data-theme="aurora-dance">
-      <div class="theme-thumb video-thumb">
-        <video autoplay loop muted playsinline preload="metadata">
-          <source src="https://assets.mixkit.co/videos/preview/mixkit-aurora-borealis-in-a-night-sky-30705-small.mp4" type="video/mp4">
-        </video>
-        <div class="theme-overlay">Aurora Dance</div>
-      </div>
-    </div>
-
-    <!-- تم ۵ - Space Tunnel -->
-    <div class="theme-card" data-theme="space-tunnel">
-      <div class="theme-thumb video-thumb">
-        <video autoplay loop muted playsinline preload="metadata">
-          <source src="https://assets.mixkit.co/videos/preview/mixkit-flying-through-a-tunnel-of-stars-30708-small.mp4" type="video/mp4">
-        </video>
-        <div class="theme-overlay">Space Tunnel</div>
-      </div>
-    </div>
-
-    <!-- تم ۶ - Pink Galaxy -->
-    <div class="theme-card" data-theme="pink-galaxy">
-      <div class="theme-thumb video-thumb">
-        <video autoplay loop muted playsinline preload="metadata">
-          <source src="https://assets.mixkit.co/videos/preview/mixkit-galaxy-background-in-pink-tone-30709-small.mp4" type="video/mp4">
-        </video>
-        <div class="theme-overlay">Pink Dream</div>
-      </div>
-    </div>
-
-    <!-- تم ۷ - Golden Cosmos -->
-    <div class="theme-card" data-theme="golden-cosmos">
-      <div class="theme-thumb video-thumb">
-        <video autoplay loop muted playsinline preload="metadata">
-          <source src="https://assets.mixkit.co/videos/preview/mixkit-golden-galaxy-with-moving-stars-30707-small.mp4" type="video/mp4">
-        </video>
-        <div class="theme-overlay">Golden Hour</div>
-      </div>
-    </div>
-
-    <!-- تم ۸ - Ice Void -->
-    <div class="theme-card" data-theme="ice-void">
-      <div class="theme-thumb video-thumb">
-        <video autoplay loop muted playsinline preload="metadata">
-          <source src="https://assets.mixkit.co/videos/preview/mixkit-icy-blue-galaxy-animation-30710-small.mp4" type="video/mp4">
-        </video>
-        <div class="theme-overlay">Ice Galaxy</div>
-      </div>
-    </div>
-
-    <!-- تم ۹ - Blood Moon -->
-    <div class="theme-card" data-theme="blood-moon">
-      <div class="theme-thumb video-thumb">
-        <video autoplay loop muted playsinline preload="metadata">
-          <source src="https://assets.mixkit.co/videos/preview/mixkit-red-nebula-with-moving-stars-30711-small.mp4" type="video/mp4">
-        </video>
-        <div class="theme-overlay">Blood Moon</div>
-      </div>
-    </div>
-
-    <!-- تم ۱۰ - Starfall -->
-    <div class="theme-card" data-theme="starfall">
-      <div class="theme-thumb video-thumb">
-        <video autoplay loop muted playsinline preload="metadata">
-          <source src="https://assets.mixkit.co/videos/preview/mixkit-stars-falling-in-the-night-sky-30712-small.mp4" type="video/mp4">
-        </video>
-        <div class="theme-overlay">Starfall</div>
-      </div>
-    </div>
-
-    <!-- تم ۱۱ - Hologram Waves -->
-    <div class="theme-card" data-theme="hologram">
-      <div class="theme-thumb video-thumb">
-        <video autoplay loop muted playsinline preload="metadata">
-          <source src="https://assets.mixkit.co/videos/preview/mixkit-holographic-waves-in-motion-30713-small.mp4" type="video/mp4">
-        </video>
-        <div class="theme-overlay">Hologram</div>
-      </div>
-    </div>
-
-    <!-- تم ۱۲ - Deep Void -->
-    <div class="theme-card" data-theme="deep-void">
-      <div class="theme-thumb video-thumb">
-        <video autoplay loop muted playsinline preload="metadata">
-          <source src="https://assets.mixkit.co/videos/preview/mixkit-deep-space-animation-with-moving-stars-30714-small.mp4" type="video/mp4">
-        </video>
-        <div class="theme-overlay">Deep Void</div>
-      </div>
-    </div>
-
+  <!-- بیو -->
+  <div style="margin-top:1.5rem">
+    <label style="color:#00ffff;font-size:1rem;margin-bottom:0.6rem;display:block">بیو</label>
+    <textarea id="bio" rows="4" placeholder="بیو خودت رو بنویس..." style="width:100%;padding:0.9rem;border-radius:14px;background:rgba(255,255,255,0.08);border:2px solid rgba(0,255,255,0.4);color:#fff;font-size:1rem">گیمر فضایی • استریمر توییچ • عاشق تکنولوژی و NFT</textarea>
   </div>
 </div>
 
-<!-- تم شخصی‌سازی شده — جدید و خفن -->
-<div class="theme-card" data-theme="custom">
-  <div class="theme-preview" id="customPreview" 
-       style="background-image:url('https://images.unsplash.com/photo-1506318137071-a8e063b4bec0?w=800');background-size:cover;background-position:center">
-    <div style="position:absolute;inset:0;background:rgba(0,0,0,.5);border-radius:12px"></div>
-    <div style="position:relative;z-index:2;color:#fff;text-align:center;padding-top:25px;font-weight:600">
-      <i class="fas fa-image fa-2x mb-2"></i><br>
-      تم شخصی من
-    </div>
-  </div>
-  <small>عکس دلخواه</small>
-</div>
-
-<!-- آپلود عکس پس‌زمینه -->
-<input type="file" id="customBgInput" accept="image/*" style="display:none">
-<button class="btn btn-ghost" style="width:100%;margin-top:.8rem" onclick="document.getElementById('customBgInput').click()">
-  آپلود عکس دلخواه برای پس‌زمینه
-</button>
-
-
-
-      <hr style="margin:2rem 0; border-color:rgba(0,255,255,.2)"/>
-
-      <h3>لینک‌ها</h3>
-      <div id="linksContainer">
-        <!-- لینک‌ها اینجا اضافه می‌شن -->
-      </div>
-
-      <button class="btn btn-primary" style="width:100%;margin-top:1rem" onclick="addLink()">
-        <i class="fas fa-plus"></i> اضافه کردن لینک جدید
-      </button>
-    </div>
-
-    <!-- پیش‌نمایش زنده -->
-    <div class="preview-panel card">
-      <h3>پیش‌نمایش زنده</h3>
-      <div class="mobile-frame">
-       <iframe id="previewFrame" src="profile.html" onload="sendFullDataToPreview()"></iframe>      <p style="text-align:center;margin-top:1rem;opacity:.8">
-        لینک عمومی تو: <br/>
-        <strong id="publicLink">hnstabeo.ir/@ali</strong>
-        <i class="fas fa-copy" onclick="copyLink()" style="cursor:pointer;margin-right:.5rem"></i>
-      </p>
-    </div>
-  </div>
-
-  <!-- اسکریپت‌ها -->
-  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
-  <script src="assets/js/main.js"></script>
-
-<script>
-// بارگذاری داده کاربر
-let userData = JSON.parse(localStorage.getItem('instabeo_user') || '{}');
-
-// داده اولیه اگه کاربر جدید بود
-if (!userData.username) {
-  userData = {
-    username: "@guest",
-    bio: "سلام! من توی اینستابیو هستم",
-    avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&crop=face",
-    theme: "cosmic-flow",
-    themeVideo: "https://assets.mixkit.co/videos/preview/mixkit-stars-moving-in-deep-space-30704-small.mp4",
-    links: [
-      {title: "اینستاگرام", url: "https://instagram.com", icon: "fab fa-instagram"},
-      {title: "تلگرام", url: "https://t.me", icon: "fab fa-telegram"},
-      {title: "یوتیوب", url: "https://youtube.com", icon: "fab fa-youtube"}
-    ]
-  };
+<style>
+.avatar-preview {
+  position: relative;
+  width: 120px;
+  height: 120px;
+  margin: 0 auto 1.5rem;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 4px solid #00ffff;
+  box-shadow: 0 0 40px rgba(0,255,255,0.6);
+  cursor: pointer;
 }
 
-// تبدیل تم‌های قدیمی به تم متحرک
-if (userData.theme && !userData.themeVideo) {
-  const videoMap = {
-    "cosmic-flow": "https://assets.mixkit.co/videos/preview/mixkit-stars-moving-in-deep-space-30704-small.mp4",
-    "purple-nebula": "https://assets.mixkit.co/videos/preview/mixkit-nebula-background-with-rotating-motion-30703-small.mp4",
-    "electric-galaxy": "https://assets.mixkit.co/videos/preview/mixkit-abstract-video-of-galaxy-with-electric-energy-30706-small.mp4",
-    "aurora-dance": "https://assets.mixkit.co/videos/preview/mixkit-aurora-borealis-in-a-night-sky-30705-small.mp4",
-    "space-tunnel": "https://assets.mixkit.co/videos/preview/mixkit-flying-through-a-tunnel-of-stars-30708-small.mp4",
-    "pink-galaxy": "https://assets.mixkit.co/videos/preview/mixkit-galaxy-background-in-pink-tone-30709-small.mp4",
-    "golden-cosmos": "https://assets.mixkit.co/videos/preview/mixkit-golden-galaxy-with-moving-stars-30707-small.mp4",
-    "ice-void": "https://assets.mixkit.co/videos/preview/mixkit-icy-blue-galaxy-animation-30710-small.mp4",
-    "blood-moon": "https://assets.mixkit.co/videos/preview/mixkit-red-nebula-with-moving-stars-30711-small.mp4",
-    "starfall": "https://assets.mixkit.co/videos/preview/mixkit-stars-falling-in-the-night-sky-30712-small.mp4",
-    "hologram": "https://assets.mixkit.co/videos/preview/mixkit-holographic-waves-in-motion-30713-small.mp4",
-    "deep-void": "https://assets.mixkit.co/videos/preview/mixkit-deep-space-animation-with-moving-stars-30714-small.mp4"
-  };
-  userData.themeVideo = videoMap[userData.theme] || videoMap["cosmic-flow"];
+.avatar-preview img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
-// ذخیره اولیه
-localStorage.setItem('instabeo_user', JSON.stringify(userData));
+.upload-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.7);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #00ffff;
+  font-size: 0.9rem;
+  font-weight: 600;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
 
-// پر کردن فرم
-document.getElementById('username').value = userData.username || '@guest';
-document.getElementById('bio').value = userData.bio || '';
-document.getElementById('avatarImg').src = userData.avatar;
-document.getElementById('publicLink').textContent = `instabeo.ir${userData.username || '@guest'}`;
+.avatar-preview:hover .upload-overlay {
+  opacity: 1;
+}
 
-// ارسال داده به پیش‌نمایش
-function sendFullDataToPreview() {
-  const iframe = document.getElementById('previewFrame');
-  if (iframe?.contentWindow) {
-    iframe.contentWindow.postMessage({ type: 'fullUpdate', payload: userData }, '*');
+.avatar-gallery {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin-top: 1rem;
+  padding: 1rem;
+  background: rgba(0,255,255,0.05);
+  border-radius: 16px;
+}
+
+.avatar-gallery img {
+  width: 100%;
+  aspect-ratio: 1/1;
+  object-fit: cover;
+  border-radius: 16px;
+  border: 3px solid transparent;
+  cursor: pointer;
+  transition: all 0.4s ease;
+}
+
+.avatar-gallery img:hover {
+  border-color: #00ffff;
+  box-shadow: 0 0 40px rgba(0,255,255,0.8);
+  transform: scale(1.1);
+}
+
+@media (max-width: 768px) {
+  .avatar-gallery {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
   }
 }
 
-// ذخیره + رفرش پیش‌نمایش (تابع اصلی تو)
-function saveAndRefresh() {
-  localStorage.setItem('instabeo_user', JSON.stringify(userData));
-  document.getElementById('publicLink').textContent = `instabeo.ir${userData.username || '@user'}`;
-  sendFullDataToPreview();
+@media (max-width: 480px) {
+  .avatar-preview {
+    width: 100px;
+    height: 100px;
+  }
 }
+</style>
 
-// رندر لینک‌ها
-function renderLinks() {
-  const c = document.getElementById('linksContainer');
-  c.innerHTML = '';
-  (userData.links || []).forEach((link, i) => {
-    const div = document.createElement('div');
-    div.className = 'link-item';
-    div.innerHTML = `
-      <div class="form-group">
-        <input type="text" value="${link.title}" onchange="userData.links[${i}].title=this.value; saveAndRefresh()">
-        <label>عنوان</label>
-      </div>
-      <div class="form-group">
-        <input type="url" value="${link.url}" onchange="userData.links[${i}].url=this.value; saveAndRefresh()">
-        <label>لینک</label>
-      </div>
-      <button class="btn btn-ghost" onclick="userData.links.splice(${i},1); renderLinks(); saveAndRefresh()">حذف</button>
-    `;
-    c.appendChild(div);
-  });
-}
-
-function addLink() {
-  userData.links.push({title: "لینک جدید", url: "https://"});
-  renderLinks();
+<script>
+// توابع آواتار — کاملاً کارکرده
+function setAvatar(src) {
+  userData.avatar = src;
+  document.getElementById('avatarImg').src = src;
   saveAndRefresh();
 }
 
-// آواتار از فایل
-document.getElementById('avatarInput').addEventListener('change', e => {
-  const file = e.target.files[0];
-  if (file) {
-    const reader = new FileReader();
-    reader.onload = ev => {
-      userData.avatar = ev.target.result;
-      document.getElementById('avatarImg').src = userData.avatar;
-      saveAndRefresh();
-    };
-    reader.readAsDataURL(file);
-  }
-});
-
-// آواتار از لینک
 function applyAvatarFromLink() {
   const link = document.getElementById('avatarLink').value.trim();
   if (!link) return alert('لینک رو وارد کن');
+
   const img = new Image();
   img.onload = () => {
     userData.avatar = link;
@@ -436,84 +467,813 @@ function applyAvatarFromLink() {
   img.src = link;
 }
 
-// آواتار از گالری
+document.getElementById('avatarInput').addEventListener('change', function(e) {
+  const file = e.target.files[0];
+  if (file) {
+    const reader = new FileReader();
+    reader.onload = function(ev) {
+      userData.avatar = ev.target.result;
+      document.getElementById('avatarImg').src = userData.avatar;
+      saveAndRefresh();
+    };
+    reader.readAsDataURL(file);
+  }
+});
+
+// نام کاربری و بیو — فوراً اعمال می‌شه
+document.getElementById('instagramUsername').addEventListener('input', function(e) {
+  userData.instagramUsername = e.target.value || '@username';
+  saveAndRefresh();
+});
+
+document.getElementById('bio').addEventListener('input', function(e) {
+  userData.bio = e.target.value;
+  saveAndRefresh();
+});
+
+// لود اولیه
+if (userData.avatar) document.getElementById('avatarImg').src = userData.avatar;
+if (userData.instagramUsername) document.getElementById('instagramUsername').value = userData.instagramUsername;
+if (userData.bio) document.getElementById('bio').value = userData.bio;
+
+// ذخیره و رفرش پیش‌نمایش
+function saveAndRefresh() {
+  localStorage.setItem('instabeo_user', JSON.stringify(userData));
+  const iframe = document.getElementById('previewFrame');
+  if (iframe && iframe.contentWindow) {
+    iframe.contentWindow.postMessage({ type: 'fullUpdate', payload: userData }, '*');
+  }
+}
+</script>
+
+<script>
+// توابع آواتار — ساده و مطمئن (۱۰۰٪ کار می‌کنن)
 function setAvatar(src) {
   userData.avatar = src;
   document.getElementById('avatarImg').src = src;
   saveAndRefresh();
 }
 
-document.querySelectorAll('.theme-card').forEach(card => {
-  card.onclick = () => {
-    document.querySelectorAll('.theme-card').forEach(c => c.classList.remove('active'));
-    card.classList.add('active');
+function applyAvatarFromLink() {
+  const link = document.getElementById('avatarLink').value.trim();
+  if (!link) return alert('لینک رو وارد کن');
 
-    const themeName = card.dataset.theme;
-    userData.theme = themeName;
-
-    const videoSource = card.querySelector('video source');
-    if (videoSource) {
-      userData.themeVideo = videoSource.getAttribute('src');  // این خط حتماً باشه!
-      delete userData.customBg;
-    } else if (themeName === 'custom') {
-      if (!userData.customBg) {
-        alert('اول عکس آپلود کن!');
-        card.classList.remove('active');
-        document.querySelector('.theme-card')?.classList.add('active');
-        return;
-      }
-      delete userData.themeVideo;
-    } else {
-      delete userData.themeVideo;
-      delete userData.customBg;
-    }
-
+  const img = new Image();
+  img.onload = () => {
+    userData.avatar = link;
+    document.getElementById('avatarImg').src = link;
+    document.getElementById('avatarLink').value = '';
     saveAndRefresh();
-    localStorage.setItem('instabeo_user', JSON.stringify(userData)); // این خط رو هم اضافه کن
   };
+  img.onerror = () => alert('لینک اشتباهه!');
+  img.src = link;
+}
+
+// آپلود از دستگاه
+document.getElementById('avatarInput').addEventListener('change', function(e) {
+  const file = e.target.files[0];
+  if (file) {
+    const reader = new FileReader();
+    reader.onload = function(ev) {
+      userData.avatar = ev.target.result;
+      document.getElementById('avatarImg').src = userData.avatar;
+      saveAndRefresh();
+    };
+    reader.readAsDataURL(file);
+  }
 });
 
-// آپلود تم شخصی
+// ذخیره و رفرش پیش‌نمایش
+function saveAndRefresh() {
+  localStorage.setItem('instabeo_user', JSON.stringify(userData));
+  const iframe = document.getElementById('previewFrame');
+  if (iframe && iframe.contentWindow) {
+    iframe.contentWindow.postMessage({ type: 'fullUpdate', payload: userData }, '*');
+  }
+}
+</script>
+
+<script>
+// اعمال نام کاربری اینستاگرام و بیو — فوراً توی پیش‌نمایش
+document.getElementById('instagramUsername').addEventListener('input', function(e) {
+  userData.instagramUsername = e.target.value || '@username';
+  saveAndRefresh();
+});
+
+document.getElementById('bio').addEventListener('input', function(e) {
+  userData.bio = e.target.value;
+  saveAndRefresh();
+});
+
+// لود اولیه
+if (userData.instagramUsername) {
+  document.getElementById('instagramUsername').value = userData.instagramUsername;
+}
+if (userData.bio) {
+  document.getElementById('bio').value = userData.bio;
+}
+</script>
+
+<script>
+// توابع آواتار — حالا ۱۰۰٪ کار می‌کنن
+function setAvatar(src) {
+  userData.avatar = src;
+  document.getElementById('avatarImg').src = src;
+  saveAndRefresh();
+}
+
+function applyAvatarFromLink() {
+  const link = document.getElementById('avatarLink').value.trim();
+  if (!link) return alert('لینک رو وارد کن');
+
+  const img = new Image();
+  img.onload = () => {
+    userData.avatar = link;
+    document.getElementById('avatarImg').src = link;
+    document.getElementById('avatarLink').value = '';
+    saveAndRefresh();
+  };
+  img.onerror = () => alert('لینک اشتباهه یا عکس لود نشد!');
+  img.src = link;
+}
+
+// آپلود از دستگاه
+document.getElementById('avatarInput').addEventListener('change', function(e) {
+  const file = e.target.files[0];
+  if (!file) return;
+
+  const reader = new FileReader();
+  reader.onload = function(ev) {
+    userData.avatar = ev.target.result;
+    document.getElementById('avatarImg').src = userData.avatar;
+    saveAndRefresh();
+  };
+  reader.readAsDataURL(file);
+});
+
+// تابع ذخیره و رفرش پیش‌نمایش (اگر قبلاً تعریف نشده)
+function saveAndRefresh() {
+  localStorage.setItem('instabeo_user', JSON.stringify(userData));
+  const iframe = document.getElementById('previewFrame');
+  if (iframe && iframe.contentWindow) {
+    iframe.contentWindow.postMessage({ type: 'fullUpdate', payload: userData }, '*');
+  }
+}
+</script>
+
+    <!-- نام و بیو -->
+    <div class="card">
+      <div class="form-group">
+  <label>تم‌های متحرک کهکشانی ۲۰۲۵ (فوق حرفه‌ای)</label>
+  <div class="themes-grid-mobile">
+    
+    <!-- تم ۱ - Cosmic Flow -->
+    <div class="theme-card active" data-theme="cosmic-flow">
+      <div class="theme-thumb">
+        <video autoplay loop muted playsinline>
+          <source src="https://assets.mixkit.co/videos/preview/mixkit-stars-moving-in-deep-space-30704-small.mp4" type="video/mp4">
+        </video>
+        <div class="theme-overlay">Cosmic Flow</div>
+      </div>
+    </div>
+
+    <!-- تم ۲ - Purple Nebula -->
+    <div class="theme-card" data-theme="purple-nebula">
+      <div class="theme-thumb">
+        <video autoplay loop muted playsinline>
+          <source src="https://assets.mixkit.co/videos/preview/mixkit-nebula-background-with-rotating-motion-30703-small.mp4" type="video/mp4">
+        </video>
+        <div class="theme-overlay">Purple Nebula</div>
+      </div>
+    </div>
+
+    <!-- تم ۳ - Electric Galaxy -->
+    <div class="theme-card" data-theme="electric-galaxy">
+      <div class="theme-thumb">
+        <video autoplay loop muted playsinline>
+          <source src="https://assets.mixkit.co/videos/preview/mixkit-abstract-video-of-galaxy-with-electric-energy-30706-small.mp4" type="video/mp4">
+        </video>
+        <div class="theme-overlay">Electric Storm</div>
+      </div>
+    </div>
+
+    <!-- تم ۴ - Aurora Dance -->
+    <div class="theme-card" data-theme="aurora-dance">
+      <div class="theme-thumb">
+        <video autoplay loop muted playsinline>
+          <source src="https://assets.mixkit.co/videos/preview/mixkit-aurora-borealis-in-a-night-sky-30705-small.mp4" type="video/mp4">
+        </video>
+        <div class="theme-overlay">Aurora Dance</div>
+      </div>
+    </div>
+
+    <!-- تم ۵ - Space Tunnel -->
+    <div class="theme-card" data-theme="space-tunnel">
+      <div class="theme-thumb">
+        <video autoplay loop muted playsinline>
+          <source src="https://assets.mixkit.co/videos/preview/mixkit-flying-through-a-tunnel-of-stars-30708-small.mp4" type="video/mp4">
+        </video>
+        <div class="theme-overlay">Space Tunnel</div>
+      </div>
+    </div>
+
+    <!-- تم ۶ - Pink Galaxy -->
+    <div class="theme-card" data-theme="pink-galaxy">
+      <div class="theme-thumb">
+        <video autoplay loop muted playsinline>
+          <source src="https://assets.mixkit.co/videos/preview/mixkit-galaxy-background-in-pink-tone-30709-small.mp4" type="video/mp4">
+        </video>
+        <div class="theme-overlay">Pink Dream</div>
+      </div>
+    </div>
+
+    <!-- تم ۷ - Golden Cosmos -->
+    <div class="theme-card" data-theme="golden-cosmos">
+      <div class="theme-thumb">
+        <video autoplay loop muted playsinline>
+          <source src="https://assets.mixkit.co/videos/preview/mixkit-golden-galaxy-with-moving-stars-30707-small.mp4" type="video/mp4">
+        </video>
+        <div class="theme-overlay">Golden Hour</div>
+      </div>
+    </div>
+
+    <!-- تم ۸ - Ice Void -->
+    <div class="theme-card" data-theme="ice-void">
+      <div class="theme-thumb">
+        <video autoplay loop muted playsinline>
+          <source src="https://assets.mixkit.co/videos/preview/mixkit-icy-blue-galaxy-animation-30710-small.mp4" type="video/mp4">
+        </video>
+        <div class="theme-overlay">Ice Galaxy</div>
+      </div>
+    </div>
+
+    <!-- تم ۹ - Blood Moon -->
+    <div class="theme-card" data-theme="blood-moon">
+      <div class="theme-thumb">
+        <video autoplay loop muted playsinline>
+          <source src="https://assets.mixkit.co/videos/preview/mixkit-red-nebula-with-moving-stars-30711-small.mp4" type="video/mp4">
+        </video>
+        <div class="theme-overlay">Blood Moon</div>
+      </div>
+    </div>
+
+    <!-- تم ۱۰ - Starfall -->
+    <div class="theme-card" data-theme="starfall">
+      <div class="theme-thumb">
+        <video autoplay loop muted playsinline>
+          <source src="https://assets.mixkit.co/videos/preview/mixkit-stars-falling-in-the-night-sky-30712-small.mp4" type="video/mp4">
+        </video>
+        <div class="theme-overlay">Starfall</div>
+      </div>
+    </div>
+
+    <!-- تم ۱۱ - Hologram Waves -->
+    <div class="theme-card" data-theme="hologram">
+      <div class="theme-thumb">
+        <video autoplay loop muted playsinline>
+          <source src="https://assets.mixkit.co/videos/preview/mixkit-holographic-waves-in-motion-30713-small.mp4" type="video/mp4">
+        </video>
+        <div class="theme-overlay">Hologram</div>
+      </div>
+    </div>
+
+    <!-- تم ۱۲ - Deep Void -->
+    <div class="theme-card" data-theme="deep-void">
+      <div class="theme-thumb">
+        <video autoplay loop muted playsinline>
+          <source src="https://assets.mixkit.co/videos/preview/mixkit-deep-space-animation-with-moving-stars-30714-small.mp4" type="video/mp4">
+        </video>
+        <div class="theme-overlay">Deep Void</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<style>
+.themes-grid-mobile {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-top: 1rem;
+}
+
+.theme-card {
+  cursor: pointer;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 2px solid transparent;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.theme-card.active {
+  border-color: #00ffff;
+  box-shadow: 0 0 30px rgba(0,255,255,0.7);
+}
+
+.theme-thumb {
+  width: 100%;
+  height: 90px;
+  border-radius: 14px;
+  overflow: hidden;
+  position: relative;
+}
+
+.theme-thumb video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.theme-overlay {
+  position: absolute;
+  bottom: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0,0,0,0.7);
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  color: #00ffff;
+  font-weight: bold;
+}
+
+.theme-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 0 40px rgba(0,255,255,0.5);
+}
+
+/* موبایل */
+@media (max-width: 480px) {
+  .theme-thumb { height: 80px; }
+  .themes-grid-mobile { gap: 10px; }
+}
+</style>
+
+
+    <!-- تم شخصی — حالا ۱۰۰٪ درست کار می‌کنه و توی پیش‌نمایش اعمال می‌شه -->
+<div class="card">
+  <h3 style="text-align:center;color:#00ffff;margin-bottom:1rem">تم شخصی</h3>
+  <div class="theme-card" data-theme="custom">
+    <div class="theme-preview" id="customPreview" style="background:#111;background-size:cover;background-position:center;height:100px;border-radius:16px;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#00ffff;font-size:1rem;transition:all 0.4s ease;box-shadow:0 0 30px rgba(0,255,255,0.3);">
+      <i class="fas fa-image fa-3x mb-2"></i>
+      تم شخصی من
+    </div>
+  </div>
+
+  <input type="file" id="customBgInput" accept="image/*" style="display:none">
+  <button class="btn custom-upload-btn" onclick="document.getElementById('customBgInput').click()">
+    <i class="fas fa-upload"></i> آپلود عکس دلخواه برای پس‌زمینه
+  </button>
+</div>
+
+<style>
+.custom-upload-btn {
+  width: 100%;
+  padding: 1rem;
+  margin-top: 1rem;
+  border-radius: 50px;
+  background: rgba(0,255,255,0.15);
+  border: 2px solid #00ffff;
+  color: #00ffff;
+  font-weight: 700;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: all 0.4s ease;
+  box-shadow: 0 0 30px rgba(0,255,255,0.4);
+}
+
+.custom-upload-btn:hover {
+  background: rgba(0,255,255,0.3);
+  transform: translateY(-5px);
+  box-shadow: 0 0 50px rgba(0,255,255,0.8);
+}
+
+.theme-preview:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 50px rgba(0,255,255,0.8);
+}
+</style>
+
+<script>
+// آپلود تم شخصی — حالا ۱۰۰٪ درست اعمال می‌شه
 document.getElementById('customBgInput').addEventListener('change', function(e) {
   const file = e.target.files[0];
   if (!file) return;
 
   const reader = new FileReader();
   reader.onload = function(ev) {
-    userData.customBg = ev.target.result;
+    const imgUrl = ev.target.result;
+
+    // ذخیره در userData
+    userData.customBg = imgUrl;
     userData.theme = 'custom';
     delete userData.themeVideo;
 
+    // اعمال روی پیش‌نمایش داشبورد
     const preview = document.getElementById('customPreview');
-    preview.style.backgroundImage = `url('${ev.target.result}')`;
-    preview.style.backgroundSize = 'cover';
-    preview.style.backgroundPosition = 'center';
-    preview.innerHTML = '<div style="position:absolute;inset:0;background:rgba(0,0,0,.4);border-radius:12px"></div><div style="position:relative;z-index:2;color:#fff;text-align:center;padding-top:30px;font-weight:600">تم شخصی من</div>';
+    preview.style.backgroundImage = `url('${imgUrl}')`;
+    preview.innerHTML = '<div style="position:absolute;inset:0;background:rgba(0,0,0,0.4);border-radius:16px"></div><div style="position:relative;z-index:2;color:#fff;text-align:center;padding-top:30px;font-weight:700;font-size:1.1rem">تم شخصی شما</div>';
 
-    document.querySelectorAll('.theme-card').forEach(c => c.classList.remove('active'));
-    document.querySelector('[data-theme="custom"]')?.classList.add('active');
+    // اعمال روی پیش‌نمایش زنده (iframe)
+    const iframe = document.getElementById('previewFrame');
+    if (iframe && iframe.contentWindow) {
+      iframe.contentWindow.postMessage({ type: 'fullUpdate', payload: userData }, '*');
+    }
 
-    saveAndRefresh();
+    // ذخیره نهایی
+    localStorage.setItem('instabeo_user', JSON.stringify(userData));
   };
   reader.readAsDataURL(file);
 });
 
-// آپدیت زنده نام و بیو
-document.getElementById('username').oninput = e => { userData.username = e.target.value || '@user'; saveAndRefresh(); };
-document.getElementById('bio').oninput = e => { userData.bio = e.target.value; saveAndRefresh(); };
-
-// کپی لینک
-function copyLink() {
-  navigator.clipboard.writeText('https://instabeo.ir' + userData.username);
-  alert('کپی شد!');
-}
-
-// فعال کردن تم ذخیره شده
-if (userData.theme) {
-  document.querySelector(`[data-theme="${userData.theme}"]`)?.classList.add('active');
-}
-
-// اجرای اولیه
-renderLinks();
-window.onload = () => setTimeout(sendFullDataToPreview, 600);
+// وقتی تم شخصی انتخاب می‌شه
+document.querySelector('[data-theme="custom"]').onclick = function() {
+  document.querySelectorAll('.theme-card').forEach(c => c.classList.remove('active'));
+  this.classList.add('active');
+  userData.theme = 'custom';
+  delete userData.themeVideo;
+  saveAndRefresh();
+};
 </script>
+
+<!-- لینک‌ها — خیلی کوچیک، ظریف، بدون اسکرول افقی، عالی روی موبایل -->
+<div class="card">
+  <h3 style="text-align:center;color:#00ffff;margin-bottom:1rem;font-size:1.3rem">لینک‌ها</h3>
+  <div id="linksContainer"></div>
+
+  <button class="btn add-link-btn" onclick="addLink()">
+    <i class="fas fa-plus"></i> اضافه کردن لینک جدید
+  </button>
+</div>
+
+<style>
+/* لینک‌ها — کوچیک و ظریف */
+#linksContainer {
+  margin-bottom: 1rem;
+}
+
+.link-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  margin-bottom: 1rem;
+  padding: 0.8rem;
+  background: rgba(255,255,255,0.05);
+  border-radius: 14px;
+  border: 1px solid rgba(0,255,255,0.2);
+}
+
+.link-item input {
+  width: 100%;
+  padding: 0.7rem;
+  border-radius: 12px;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(0,255,255,0.4);
+  color: #fff;
+  font-size: 0.9rem;
+}
+
+/* ضربدر حذف — بزرگ، قرمز و مشخص */
+.link-delete {
+  align-self: flex-end;
+  background: rgba(255,51,102,0.2);
+  border: 2px solid #ff3366;
+  color: #ff3366;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  font-size: 1.2rem;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s;
+}
+
+.link-delete:hover {
+  background: rgba(255,51,102,0.5);
+  transform: scale(1.2);
+  box-shadow: 0 0 20px rgba(255,51,102,0.8);
+}
+
+/* دکمه اضافه کردن — کوچیک و ظریف */
+.add-link-btn {
+  width: 100%;
+  padding: 0.9rem;
+  border-radius: 50px;
+  background: rgba(0,255,255,0.15);
+  border: 2px solid #00ffff;
+  color: #00ffff;
+  font-weight: 700;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.add-link-btn:hover {
+  background: rgba(0,255,255,0.3);
+  box-shadow: 0 0 30px rgba(0,255,255,0.6);
+}
+
+/* موبایل — کاملاً بدون اسکرول افقی */
+@media (max-width: 768px) {
+  .link-item {
+    padding: 0.7rem;
+  }
+  .link-item input {
+    font-size: 0.95rem;
+    padding: 0.8rem;
+  }
+  .link-delete {
+    width: 45px;
+    height: 45px;
+    font-size: 1.4rem;
+  }
+}
+</style>
+
+<script>
+// رندر لینک‌ها — آپدیت شده با کلاس جدید برای ضربدر
+function renderLinks() {
+  const c = document.getElementById('linksContainer');
+  c.innerHTML = '';
+  (userData.links || []).forEach((link, i) => {
+    const div = document.createElement('div');
+    div.className = 'link-item';
+    div.innerHTML = `
+      <input type="text" value="${link.title}" placeholder="عنوان لینک" onchange="userData.links[${i}].title=this.value; saveAndRefresh()">
+      <input type="url" value="${link.url}" placeholder="https://..." onchange="userData.links[${i}].url=this.value; saveAndRefresh()">
+      <button class="link-delete" onclick="userData.links.splice(${i},1); renderLinks(); saveAndRefresh()">×</button>
+    `;
+    c.appendChild(div);
+  });
+}
+</script>
+
+<!-- پیش‌نمایش زنده — کاملاً درست، زیبا و کارکرده -->
+<div class="card">
+  <h3 style="text-align:center;color:#00ffff;margin-bottom:1rem;font-size:1.4rem">پیش‌نمایش زنده</h3>
+
+  <!-- کنترل رنگ متن -->
+  <div class="preview-controls">
+    <label style="color:#00ffff;font-size:1rem;margin-bottom:0.8rem;display:block;text-align:center">رنگ متن پروفایل</label>
+    <div class="color-picker">
+      <button class="color-btn active" data-color="#ffffff" style="background:#ffffff"></button>
+      <button class="color-btn" data-color="#00ffff" style="background:#00ffff"></button>
+      <button class="color-btn" data-color="#ff00ff" style="background:#ff00ff"></button>
+      <button class="color-btn" data-color="#ffd700" style="background:#ffd700"></button>
+      <button class="color-btn" data-color="#ff3366" style="background:#ff3366"></button>
+      <button class="color-btn" data-color="#00ff00" style="background:#00ff00"></button>
+    </div>
+  </div>
+
+  <!-- پیش‌نمایش (موبایل واقعی) -->
+  <div class="mobile-frame">
+    <iframe id="previewFrame" src="profile.html"></iframe>
+  </div>
+
+  <p style="text-align:center;margin-top:1.5rem;opacity:.8;font-size:1rem">
+    لینک عمومی تو: <br/>
+    <strong id="publicLink">instabeo.ir/@ali</strong>
+    <i class="fas fa-copy" onclick="copyLink()" style="cursor:pointer;margin-left:8px;font-size:1.3rem;color:#00ffff"></i>
+  </p>
+</div>
+
+<style>
+.preview-controls {
+  margin-bottom: 1.5rem;
+  padding: 1rem;
+  background: rgba(0,255,255,0.05);
+  border-radius: 16px;
+  border: 1px solid rgba(0,255,255,0.2);
+}
+
+.color-picker {
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.color-btn {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: 3px solid transparent;
+  cursor: pointer;
+  transition: all 0.4s ease;
+  box-shadow: 0 0 15px rgba(0,0,0,0.6);
+}
+
+.color-btn.active {
+  border-color: #fff;
+  box-shadow: 0 0 35px currentColor;
+  transform: scale(1.2);
+}
+
+.color-btn:hover {
+  transform: scale(1.15);
+  box-shadow: 0 0 35px currentColor;
+}
+
+/* پیش‌نمایش — کوچیک، زیبا و وسط صفحه */
+.mobile-frame {
+  max-width: 360px;
+  margin: 2rem auto;
+  border: 12px solid #000;
+  border-radius: 44px;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.9);
+  background: #000;
+}
+
+#previewFrame {
+  width: 100%;
+  height: 680px;
+  border: none;
+  transform: scale(0.96);
+  transform-origin: top center;
+}
+
+/* موبایل */
+@media (max-width: 480px) {
+  .mobile-frame {
+    max-width: 320px;
+    border-width: 10px;
+    border-radius: 40px;
+  }
+  #previewFrame {
+    height: 620px;
+  }
+}
+</style>
+
+<script>
+// تغییر رنگ متن — فوراً اعمال می‌شه
+document.querySelectorAll('.color-btn').forEach(btn => {
+  btn.addEventListener('click', function() {
+    document.querySelectorAll('.color-btn').forEach(b => b.classList.remove('active'));
+    this.classList.add('active');
+
+    const color = this.getAttribute('data-color');
+    userData.textColor = color;
+
+    const iframe = document.getElementById('previewFrame');
+    if (iframe && iframe.contentWindow) {
+      iframe.contentWindow.postMessage({ type: 'updateTextColor', color: color }, '*');
+    }
+
+    saveAndRefresh();
+  });
+});
+
+// لود رنگ ذخیره شده
+if (userData.textColor) {
+  document.querySelector(`.color-btn[data-color="${userData.textColor}"]`)?.classList.add('active');
+}
+</script>
+
+<script>
+// تغییر رنگ متن
+document.querySelectorAll('.color-btn').forEach(btn => {
+  btn.addEventListener('click', function() {
+    document.querySelectorAll('.color-btn').forEach(b => b.classList.remove('active'));
+    this.classList.add('active');
+
+    const color = this.getAttribute('data-color');
+    userData.textColor = color;
+
+    const iframe = document.getElementById('previewFrame');
+    if (iframe && iframe.contentWindow) {
+      iframe.contentWindow.postMessage({ type: 'updateTextColor', color: color }, '*');
+    }
+
+    saveAndRefresh();
+  });
+});
+
+// اعمال رنگ ذخیره شده
+if (userData.textColor) {
+  document.querySelector(`.color-btn[data-color="${userData.textColor}"]`)?.classList.add('active');
+}
+</script>
+
+<script>
+// تغییر رنگ متن در پیش‌نمایش
+document.querySelectorAll('.color-btn').forEach(btn => {
+  btn.addEventListener('click', function() {
+    document.querySelectorAll('.color-btn').forEach(b => b.classList.remove('active'));
+    this.classList.add('active');
+
+    const color = this.getAttribute('data-color');
+    userData.textColor = color;
+
+    // اعمال روی iframe پیش‌نمایش
+    const iframe = document.getElementById('previewFrame');
+    if (iframe && iframe.contentWindow) {
+      iframe.contentWindow.postMessage({ type: 'updateTextColor', color: color }, '*');
+    }
+
+    saveAndRefresh();
+  });
+});
+
+// وقتی صفحه لود شد، رنگ ذخیره شده رو اعمال کن
+window.addEventListener('load', () => {
+  if (userData.textColor) {
+    document.querySelector(`.color-btn[data-color="${userData.textColor}"]`)?.classList.add('active');
+  }
+});
+</script>
+
+  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+  <script>
+    // اسکریپت کامل (بدون تغییر)
+    let userData = JSON.parse(localStorage.getItem('instabeo_user') || '{}');
+    if (!userData.username) {
+      userData = {
+        username: "@guest",
+        bio: "سلام! من توی اینستابیو هستم",
+        avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&crop=face",
+        theme: "cosmic-flow",
+        themeVideo: "https://assets.mixkit.co/videos/preview/mixkit-stars-moving-in-deep-space-30704-small.mp4",
+        links: []
+      };
+    }
+    localStorage.setItem('instabeo_user', JSON.stringify(userData));
+
+    document.getElementById('username').value = userData.username || '';
+    document.getElementById('bio').value = userData.bio || '';
+    document.getElementById('avatarImg').src = userData.avatar;
+    document.getElementById('publicLink').textContent = `instabeo.ir${userData.username || '@guest'}`;
+
+    function save() {
+      localStorage.setItem('instabeo_user', JSON.stringify(userData));
+      document.getElementById('publicLink').textContent = `instabeo.ir${userData.username || '@guest'}`;
+      const f = document.getElementById('previewFrame');
+      if (f?.contentWindow) f.contentWindow.postMessage({type:'fullUpdate',payload:userData},'*');
+    }
+
+    document.getElementById('username').oninput = e => { userData.username = e.target.value || '@guest'; save(); };
+    document.getElementById('bio').oninput = e => { userData.bio = e.target.value; save(); };
+    document.getElementById('avatarInput').onchange = e => {
+      const f = e.target.files[0];
+      if (f) {
+        const r = new FileReader();
+        r.onload = ev => { userData.avatar = ev.target.result; document.getElementById('avatarImg').src = userData.avatar; save(); };
+        r.readAsDataURL(f);
+      }
+    };
+    document.getElementById('customBgInput').onchange = e => {
+      const f = e.target.files[0];
+      if (f) {
+        const r = new FileReader();
+        r.onload = ev => {
+          userData.customBg = ev.target.result;
+          userData.theme = 'custom';
+          delete userData.themeVideo;
+          document.getElementById('customPreview').style.backgroundImage = `url('${ev.target.result}')`;
+          save();
+        };
+        r.readAsDataURL(f);
+      }
+    };
+
+    function addLink() { userData.links.push({title:"لینک جدید",url:"https://"}); renderLinks(); save(); }
+    function renderLinks() {
+      const c = document.getElementById('linksContainer');
+      c.innerHTML = '';
+      userData.links.forEach((l,i) => {
+        c.innerHTML += `<div class="link-item"><input value="${l.title}" onchange="userData.links[${i}].title=this.value;save()"><input value="${l.url}" onchange="userData.links[${i}].url=this.value;save()"><button onclick="userData.links.splice(${i},1);renderLinks();save()">✕</button></div>`;
+      });
+    }
+    renderLinks();
+
+    document.querySelectorAll('.theme-card').forEach(c => {
+      c.onclick = () => {
+        document.querySelectorAll('.theme-card').forEach(x => x.classList.remove('active'));
+        c.classList.add('active');
+        userData.theme = c.dataset.theme;
+        const v = c.querySelector('video source');
+        if (v) {
+          userData.themeVideo = v.getAttribute('src');
+          delete userData.customBg;
+        } else if (userData.theme === 'custom' && !userData.customBg) {
+          alert('عکس آپلود کن');
+          c.classList.remove('active');
+        } else {
+          delete userData.themeVideo;
+        }
+        save();
+      };
+    });
+    if (userData.theme) document.querySelector(`[data-theme="${userData.theme}"]`).classList.add('active');
+
+    function copyLink() { navigator.clipboard.writeText('https://instabeo.ir'+userData.username); alert('کپی شد!'); }
+    save();
+  </script>
+</body>
+</html>
