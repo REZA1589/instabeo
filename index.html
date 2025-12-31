@@ -36,51 +36,54 @@
   <meta name="theme-color" content="#000428">
   <link rel="manifest" href="manifest.json">
 </head>
+
+<!-- تلگرام شناور — خفن و ریسپانسیو -->
+  <a href="https://t.me/instabeo_ir" target="_blank" class="telegram-float">
+    <i class="fab fa-telegram-plane"></i>
+    <span>پشتیبانی ۲۴ ساعته</span>
+  </a>
+
+  <style>
+    .telegram-float {
+      position: fixed;
+      bottom: 25px;
+      left: 25px;
+      width: 65px;
+      height: 65px;
+      background: linear-gradient(45deg,#0088cc,#00ccf9);
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.8rem;
+      box-shadow: 0 10px 30px rgba(0,136,204,0.7);
+      z-index: 9999;
+      transition: all 0.4s ease;
+      animation: float 3s ease-in-out infinite;
+      text-decoration: none;
+    }
+    .telegram-float span {
+      font-size: 0.7rem;
+      margin-top: 4px;
+      font-weight: bold;
+    }
+    .telegram-float:hover {
+      transform: scale(1.15);
+      box-shadow: 0 15px 40px rgba(0,136,204,0.9);
+    }
+    @keyframes float {
+      0%,100% { transform: translateY(0); }
+      50% { transform: translateY(-15px); }
+    }
+    @media (max-width:480px) {
+      .telegram-float { width:58px; height:58px; font-size:1.6rem; bottom:20px; left:20px; }
+    }
+  </style>
 <body>
 
-  <a href="https://t.me/instabeo_ir" target="_blank" class="telegram-float">
-  <i class="fab fa-telegram-plane"></i>
-  <span>پشتیبانی ۲۴ ساعته</span>
-</a>
-
-<style>
-.telegram-float {
-  position: fixed;
- bottom: 25px;
- left: 25px;
- width: 65px;
- height: 65px;
- background: linear-gradient(45deg,#0088cc,#00ccf9);
- color: white;
- border-radius: 50%;
- display: flex;
- flex-direction: column;
- align-items: center;
- justify-content: center;
- font-size: 1.8rem;
- box-shadow: 0 10px 30px rgba(0,136,204,0.7);
- z-index: 9999;
- transition: all 0.4s ease;
- animation: float 3s ease-in-out infinite;
- text-decoration: none;
-}
-.telegram-float span {
-  font-size: 0.7rem;
-  margin-top: 4px;
-  font-weight: bold;
-}
-.telegram-float:hover {
-  transform: scale(1.15);
-  box-shadow: 0 15px 40px rgba(0,136,204,0.9);
-}
-@keyframes float {
-  0%,100% { transform: translateY(0); }
-  50% { transform: translateY(-15px); }
-}
-@media (max-width:480px) {
-  .telegram-float { width:58px; height:58px; font-size:1.6rem; bottom:20px; left:20px; }
-}
-</style>
+  
 
   <!-- Particles Background -->
   <div id="particles-js"></div>
@@ -168,10 +171,7 @@
     </div>
   </section>
 
-  <!-- دکمه شناور تلگرام -->
-  <a href="https://t.me/instabeo_ir" target="_blank" class="floating-telegram">
-    <i class="https://t.me/Rezamaleki666"></i>
-  </a>
+ 
 
   <footer>
     <p>© 1404 اینستابیو - همه حقوق محفوظ است | ساخته شده با در ایران</p>
